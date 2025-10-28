@@ -1,0 +1,120 @@
+/* ===== Scope: nur innerhalb des Headers ===== */
+#eduart-header .menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-background);
+  box-shadow: 0 2px 10px rgba(0,0,0,.5);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+#eduart-header .menu__logo { width: 25%; }
+#eduart-header .menu__logo img { height: 40px; width: auto; padding-left: 50px; }
+
+/* Desktop-Navigation Container */
+#eduart-header .menu__nav { width: 50%; font-size: 1rem; }
+#eduart-header .menu__nav > ul { display: flex; align-items: center; justify-content: center; list-style: none; margin: 0; padding: 0; }
+#eduart-header .menu__nav > ul > li { position: relative; display: flex; align-items: center; list-style: none; }
+#eduart-header .menu__nav > ul > li + li { border-left: 1px solid var(--color-text); margin-left: 20px; padding-left: 20px; }
+
+#eduart-header .menu__nav a { color: var(--color-text); padding: 8px 12px; transition: background-color .3s, border-radius .3s, color .2s; }
+#eduart-header .menu__nav a:hover { background-color: var(--color-company-primary); color: var(--color-text); border-radius: 5px; }
+
+/* Dropdown */
+#eduart-header .menu__nav > ul > li > ul {
+  display: none; position: absolute; top: 100%; left: 0; background: #fff;
+  list-style: none; padding: 6px 0; margin: 0; min-width: 250px; box-shadow: 0 2px 5px rgba(0,0,0,.3); z-index: 10;
+}
+#eduart-header .menu__nav > ul > li:hover > ul { display: block; }
+#eduart-header .menu__nav > ul > li > ul > li { width: 100%; }
+#eduart-header .menu__nav > ul > li > ul a { display: block; color: #000; text-decoration: none; padding: 10px 14px; transition: background-color .3s, color .3s; }
+#eduart-header .menu__nav > ul > li > ul > li:hover { background: var(--color-company-primary); }
+#eduart-header .menu__nav > ul > li > ul > li:hover > a { color: var(--color-text); }
+
+/* Mobile-Submenü Trennlinien */
+#eduart-header .mobile-nav > ul > li > ul > li + li { border-top: 1px solid #e0e0e0; }
+
+/* Burger & Mobile */
+#eduart-header .burger { display: none; }
+
+#eduart-header .mobile-nav {
+  display: none; background: var(--color-background); width: 100%; position: absolute;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2); z-index: 998; list-style: none;
+}
+#eduart-header .mobile-nav > ul { list-style: none; }
+#eduart-header .mobile-nav > ul > li > ul {
+  display: block; background: var(--color-company-secondary); padding: 0;
+  border-left: 12px solid var(--color-company-primary); width: 100%;
+}
+#eduart-header .mobile-nav > ul > li > ul a {
+  display: block; padding: 10px 20px; width: 100%; color: var(--color-background);
+  background: var(--color-company-secondary); transition: background-color .3s, color .3s;
+}
+#eduart-header .mobile-nav > ul > li > ul a:hover { background: var(--color-company-primary); color: var(--color-text); }
+
+/* Socials */
+#eduart-header .social-icons { width: 25%; display: flex; justify-content: flex-end; gap: 3%; }
+#eduart-header .social-icons a { display: flex; align-items: center; width: 40px; height: 40px; border-radius: 3px; transition: background-color .3s; }
+#eduart-header .social-icons a img { height: 25px; transition: filter .3s; filter: brightness(0) invert(1); }
+#eduart-header .social-icons a:hover { background: var(--color-company-primary); }
+#eduart-header .social-icons a:hover img { filter: brightness(0) invert(1); }
+
+/* Fokus / A11y */
+#eduart-header .menu__nav a:focus,
+#eduart-header .menu__nav > ul > li > ul a:focus,
+#eduart-header .mobile-nav a:focus { outline: 2px solid var(--color-idas-hellblau); outline-offset: 2px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  #eduart-header .menu { flex-direction: row; justify-content: space-between; align-items: center; padding: 15px 20px; }
+  #eduart-header .menu__nav, #eduart-header .social-icons { display: none; }
+  #eduart-header .burger { display: block; cursor: pointer; color: var(--color-text); font-size: 35px; }
+  #eduart-header .menu__logo { display: flex; justify-content: flex-end; flex: 1; }
+  #eduart-header .menu__logo img { height: 35px; padding-left: 0; }
+
+  #eduart-header .mobile-nav {
+    flex-direction: column; background: #fff; width: 100%; position: absolute; top: 100%; left: 0;
+    z-index: 998; box-shadow: 0 4px 10px rgba(0,0,0,.15); padding: 0; margin: 0; list-style: none;
+  }
+  #eduart-header .mobile-nav.active { display: flex; }
+  #eduart-header .mobile-nav > ul { list-style: none; padding: 0; margin: 0; }
+  #eduart-header .mobile-nav > ul > li { border-bottom: 1px solid #eee; }
+  #eduart-header .mobile-nav > ul > li > a {
+    display: block; padding: 12px 20px; color: #000; text-decoration: none;
+    transition: background-color .3s, color .3s;
+  }
+  #eduart-header .mobile-nav > ul > li > a:hover { background: var(--color-company-primary); color: #fff; }
+}
+
+
+/* --- Header immer ganz oben, aber NICHT zum Scroll-Container machen --- */
+#eduart-header { position: relative; z-index: 10000; }
+#eduart-header .menu {
+  position: sticky;
+  top: 0;
+  z-index: 10000;      /* über Content */
+  overflow: visible;   /* Dropdown darf über den Header hinausragen */
+}
+
+/* Falls irgendein Elternknoten overflow setzt: explizit erlauben */
+#eduart-header .menu__nav,
+#eduart-header .menu__nav > ul,
+#eduart-header .menu__nav > ul > li {
+  overflow: visible !important;
+}
+
+/* Dropdown sicher über allem (auch über eventuellen Sidebars/Codeblöcken) */
+#eduart-header .menu__nav > ul > li > ul {
+  z-index: 10001;      /* höher als Header */
+}
+
+/* Kleiner Robustheits-Boost: keine Bullets und keine Einrückung */
+#eduart-header .menu__nav > ul { list-style: none; margin: 0; padding: 0; }
+#eduart-header .menu__nav > ul > li { list-style: none; }
+
+/* Optional: verhindert horizontale Scrollbars durch Hover-Effekte */
+html, body { overflow-x: hidden; }

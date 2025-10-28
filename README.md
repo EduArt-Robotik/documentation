@@ -3,6 +3,11 @@
 npm run start
 ```
 
+Use Menu of website instead of Docusaurus menu
+```
+npx docusaurus swizzle @docusaurus/theme-classic Navbar --eject --danger
+```
+
 
 
 # Website
