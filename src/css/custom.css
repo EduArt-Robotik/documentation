@@ -15,6 +15,12 @@
   --ifm-color-primary-lightest: #811811;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --color-background: #000;                 /* dein Hintergrund */
+  --color-text: #fff;                        /* Text/Icons im Header */
+  --color-company-primary: #3478f6;          /* Hover/Brand */
+  --color-company-secondary: #cfe6ff;        /* Mobile Submenu BG */
+  --color-idas-hellblau: #66aaff;            /* Fokus */
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -27,4 +33,200 @@
   --ifm-color-primary-lighter: #93413b;
   --ifm-color-primary-lightest: #93413b;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+
+/* ======== NAVBAR CONTAINER – wie .menu ======== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-background);
+  box-shadow: 0 2px 10px rgba(0,0,0,.5);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Innenlayout */
+.navbar__inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo links: ~25% */
+.navbar__brand { width: 25%; min-width: 25%; }
+.menu__logo img { height: 40px; width: auto; padding-left: 50px; }
+
+/* ======== CENTER NAV – wie .menu__nav ======== */
+.navbar__items--left {
+  /* Wir nutzen die linke Items-Zone als "Mitte" und zentrieren */
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  gap: 0; /* wir bauen Trenner selbst */
+}
+
+/* Top-Level-Links (und Dropdown-Trigger) nebeneinander */
+.navbar__items--left > * {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Trenner nur zwischen Top-Level-Punkten */
+.navbar__items--left > * + * {
+  border-left: 1px solid var(--color-text);
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+/* Link-Grunddesign */
+.navbar__link,
+.navbar__item.navbar__link,
+.navbar__item.dropdown > .navbar__link {
+  color: var(--color-text);
+  padding: 8px 12px;
+  border-radius: 0;
+  transition: background-color .3s ease, border-radius .3s ease, color .2s ease;
+}
+
+.navbar__link:hover,
+.navbar__item.dropdown > .navbar__link:hover {
+  background-color: var(--color-company-primary);
+  color: var(--color-text);
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* ======== DROPDOWN ======== */
+.dropdown__menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  min-width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.3);
+  z-index: 10;
+}
+.navbar__item.dropdown:hover > .dropdown__menu { display: block; }
+
+.dropdown__link {
+  display: block;
+  color: #000;
+  padding: 10px 14px;
+  transition: background-color .3s ease, color .3s ease;
+}
+.dropdown__link:hover {
+  background-color: var(--color-company-primary);
+  color: var(--color-text);
+}
+
+/* ======== SOCIAL ICONS rechts: ~25% ======== */
+.navbar__items--right {
+  width: 25%;
+  display: flex;
+  justify-content: flex-end;
+}
+.social-icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3%;
+}
+.social-icons a {
+  display: flex;
+  align-items: center;
+  width: 40px; height: 40px;
+  border-radius: 3px;
+  transition: background-color .3s ease;
+}
+.social-icons a img {
+  height: 25px;
+  transition: filter .3s ease;
+  filter: brightness(0) invert(1);
+}
+.social-icons a:hover { background-color: var(--color-company-primary); }
+.social-icons a:hover img { filter: brightness(0) invert(1); }
+
+/* ======== TEXT SELECTION ======== */
+::selection { background: var(--color-company-primary); color: #fff; }
+
+/* ======== MOBILE ======== */
+@media (max-width: 996px) {  /* Docusaurus Breakpoint */
+  .navbar {
+    padding: 15px 20px;
+  }
+  .navbar__brand { flex: 1; display: flex; justify-content: flex-end; }
+  .menu__logo img { height: 35px; padding-left: 0; }
+
+  /* Desktop-Nav & Socials ausblenden – Docusaurus macht das teils selbst */
+  .navbar__items--left,
+  .navbar__items--right { display: none; }
+
+  /* Burger sichtbar */
+  .navbar__toggle { 
+    display: block; 
+    color: var(--color-text);
+    font-size: 35px; 
+  }
+
+  /* --- Sidebar = Mobile-Menü --- */
+  .navbar-sidebar {
+    background: var(--color-background);
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
+  }
+
+  /* Äußere Liste */
+  .navbar-sidebar__items .menu__list {
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .navbar-sidebar__items .menu__list .menu__list-item {
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Top-Level */
+  .navbar-sidebar__items .menu__link {
+    display: block;
+    padding: 12px 20px;
+    color: #000;
+    transition: background-color .3s ease, color .3s ease;
+  }
+  .navbar-sidebar__items .menu__link:hover,
+  .navbar-sidebar__items .menu__link--active {
+    background-color: var(--color-company-primary);
+    color: #fff;
+  }
+
+  /* Submenu-Container (Dropdown aufgeklappt) */
+  .navbar-sidebar__items .menu__list .menu__list {
+    display: block;
+    background: var(--color-company-secondary);
+    border-left: 12px solid var(--color-company-primary);
+    margin: 0;
+  }
+  .navbar-sidebar__items .menu__list .menu__list .menu__link {
+    background: var(--color-company-secondary);
+    color: var(--color-background);
+    padding: 10px 20px;
+  }
+  .navbar-sidebar__items .menu__list .menu__list .menu__link:hover {
+    background: var(--color-company-primary);
+    color: var(--color-text);
+  }
+}
+
+/* ======== FOKUS / A11y ======== */
+.navbar__link:focus,
+.dropdown__link:focus,
+.navbar-sidebar .menu__link:focus {
+  outline: 2px solid var(--color-idas-hellblau);
+  outline-offset: 2px;
 }
