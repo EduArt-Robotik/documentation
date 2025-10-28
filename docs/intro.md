@@ -1,4 +1,7 @@
 ---
+id: intro
+title: Welcome
+slug: /         # macht diese Seite zur Startseite der Docs
 sidebar_position: 1
 ---
 
