@@ -26,7 +26,16 @@
     --color-link-hover: #811811; /* EduArt Rot */
     --color-button-bg: rgba(0, 0, 0, 0.3);
     --color-button-border: #fff;
+
+
 }
+
+:root {
+  .navbar { display: none !important; } /* versteckt die Navbar komplett */
+}
+
+/* Falls bereits gesetzt, ist das okay – ansonsten hiermit sicherstellen */
+.main-wrapper { margin-top: 0 !important; }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {

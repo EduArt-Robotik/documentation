@@ -25,25 +25,23 @@ function MenuList({items}) {
 }
 
 // Deine Menüstruktur
+
 const menuData = [
   {
     label: 'Home',
     to: 'https://test.eduart-robotik.com',
-    children: [
-      {label: 'Überblick', to: '/'},
-      {label: 'Blog', to: '/blog'},
-    ],
   },
   {label: 'Products', 
     to: 'https://test.eduart-robotik.com/products', 
     children: [
-      {label: 'R&D Platform „Eduard“ ', to: 'http://test.eduart-robotik.com/products/rd-platform-eduard/'},
-      {label: 'Robotics Kits', to: 'http://test.eduart-robotik.com/products/robotics-kits/'},
-      {label: 'Accessories', to: 'http://test.eduart-robotik.com/products/accessories/'},
+      {label: 'R&D Platform "Eduard"', to: 'http://test.eduart-robotik.com/products/rd-platform-eduard/'},
+      {label: '@work Platform "Arthur"', to: 'http://test.eduart-robotik.com/products/atWork-platform-arthur/'},
+      {label: 'Kinematics Kit "Kim"', to: 'http://test.eduart-robotik.com/products/kinematics-kit-kim/'},
+      {label: 'Sensor ring "Vision360"', to: 'http://test.eduart-robotik.com/products/sensor-ring-vision360/'},
     ] 
 }, 
-  {label: 'Contact', to: '/contact'},
-  {label: 'Tutorial', to: '/docs/intro'},
+  {label: 'Contact', to: 'http://test.eduart-robotik.com/contact/'},
+  {label: 'Documentation', to: '/docs/intro'},
   {label: 'Blog', to: '/blog'},
 ];
 
