@@ -23,6 +23,8 @@ const config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
+  staticDirectories: ['public', 'static'],
+
   // Set the production url of your site here
   url: 'https://test.eduart-robotik.de',
   // Set the /<baseUrl>/ pathname under which your site is served
