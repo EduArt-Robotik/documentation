@@ -156,3 +156,5 @@ source ~/.bashrc
 ```
 
 (in jedem bereits geöffneten Terminal) oder alternativ alle Terminalfenster neu öffnen.
+
+Weiter bei 6.5 auf Seite 14
