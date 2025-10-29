@@ -42,7 +42,7 @@ const menuData = [
     ] 
 }, 
   {label: 'Contact', to: 'http://test.eduart-robotik.com/contact/'},
-  {label: 'Documentation', to: '/docs/', children: [
+  {label: 'Documentation', to: '/', children: [
       {label: 'Log', to: '/blog'},
   ],},
 ];
