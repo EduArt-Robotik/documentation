@@ -10,8 +10,7 @@ sidebar_position: 1
 Willkommen bei **EduArt Robotik**! Wir bauen modulare Lern- und Forschungsplattformen für mobile Robotik – von der Hardware bis zu ROS-basierten Software-Stacks (ROS 1 & ROS 2).  
 Diese Seite ist dein Einstiegspunkt: Sie erklärt **nur**, welche Anleitungen dich im Anschluss erwarten und was du damit lernen kannst.
 
-![Alle Eduards](pathname://img/all-eduards.jpg)
----
+![Alle Eduards](/img/all_eduards.jpg)
 
 ## Was dich in den nächsten Kapiteln erwartet
 
