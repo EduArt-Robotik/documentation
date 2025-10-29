@@ -6,6 +6,10 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+// Latex support for Docusaurus
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
@@ -52,6 +56,8 @@ const config = {
           // Remove this to remove the "edit this page" links.
           // editUrl:
           //  'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          remarkPlugins: [remarkMath], // latex support
+          rehypePlugins: [rehypeKatex], // latex support
         },
         blog: {
           showReadingTime: true,
@@ -73,6 +79,16 @@ const config = {
         },
       }),
     ],
+  ],
+
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+      crossorigin: 'anonymous',
+    },
   ],
 
   themeConfig:
@@ -118,7 +134,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+                to: '/',
               },
             ],
           },
@@ -158,8 +174,11 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['powershell', 'bash'],
       },
     }),
 };
+
+
 
 export default config;

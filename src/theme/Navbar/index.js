@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import Link from '@docusaurus/Link';
 import '@site/src/css/header.css';
 
+
 const isExternal = (url) => /^https?:\/\//i.test(url);
 function SmartLink({to, href, children, ...rest}) {
   const external = href || (to && isExternal(to));
@@ -41,8 +42,9 @@ const menuData = [
     ] 
 }, 
   {label: 'Contact', to: 'http://test.eduart-robotik.com/contact/'},
-  {label: 'Documentation', to: '/docs/intro'},
-  {label: 'Blog', to: '/blog'},
+  {label: 'Documentation', to: '/docs/', children: [
+      {label: 'Log', to: '/blog'},
+  ],},
 ];
 
 export default function Navbar() {
@@ -71,7 +73,7 @@ export default function Navbar() {
               <picture>
                 <source srcSet="logos/EduArt_Logo_white.svg" type="image/svg+xml" />
                 <img
-                  src="logos/EduArt_Logo_white.png"
+                  src="logos/EduArt_Logo_white.svg"
                   alt="EduArt Robotik GmbH Logo"
                   width="180" height="40"
                   loading="eager" decoding="async"
