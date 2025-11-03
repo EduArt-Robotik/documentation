@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 11
 ---
 # edu_simulation
 
@@ -136,7 +136,7 @@ angular:
 We set the linear x velocity to 0.1 and further add -r 10 and -p 100 at the end. The option -r 10 repeats the command 10 times per second and -p 100 just shows us 1 out of every 100 commands sent this way. The reason this is necessary lies in a safety mechanism integrated in the eduard robot, if it receives no movement command for 200ms (even if it tells it to not move at all) it will cease all movement.
 
 ## Gazebo in Virtual Machines
-When using Gazebo in a Virtual Machine you probably need to set the environment variable `LIBGL_DRI3_DISABLE` to `true`. Either do this when calling the launch-file or inside the launch-description of the launch file. <br>
+When using Gazebo in a Virtual Machine you probably need to set the environment variable `LIBGL_DRI3_DISABLE` to `true`. Either do this when calling the launch-file or inside the launch-description of the launch file. 
 
 ### Modify Launch File 
 In the `gazebo.launch.py` file:
