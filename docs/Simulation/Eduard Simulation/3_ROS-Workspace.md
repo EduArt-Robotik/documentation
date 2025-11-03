@@ -1,5 +1,5 @@
 ---
-sidebar_position: 10
+sidebar_position: 3
 ---
 # ROS2 Workspace anlegen
 - Ubuntu Docker öffnen, entweder im Browser oder im VNC Viewer
