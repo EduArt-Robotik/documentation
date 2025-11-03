@@ -14,11 +14,3 @@ colcon build
 - erstellt werden jetzt die Ordner Devel, Setup und Install (glaube ich)
 
 Als nächstes dann das Simulationstutorial starten.
-
-
-# Troubleshooting
-- Docker container "ros2-vnc-test" existiert bereits: 
-```shell
-docker rm -f ros2-vnc-test
-```
-
