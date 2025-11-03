@@ -157,8 +157,6 @@ LIBGL_DRI3_DISABLE=true ros2 launch edu_simulation gazebo.launch.py
 
 ## Models
 
-[link](documentation/models.md)
-
 ## World
 
 ## Usage
