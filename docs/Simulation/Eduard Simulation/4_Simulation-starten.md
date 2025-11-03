@@ -53,7 +53,6 @@ colcon build --symlink-install --packages-select edu_robot edu_robot_control edu
 
 ## Models
 
-[link](documentation/models.md)
 
 ## Launching Simulator
 
