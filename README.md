@@ -3,6 +3,9 @@
 - static includes pictures etc., write path always without static (e.g. logos/EduArtLogo.svg)
 - src/theme/index.js overrides standard menu from docusaurus with EduArt Menu
 
+# ToDo
+- Social Media Icons weg, dafür Suche + Dark/Lightmode Button wieder hin
+
 # Installation 
 ```
 npm run start
