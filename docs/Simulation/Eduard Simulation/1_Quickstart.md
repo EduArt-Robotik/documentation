@@ -51,19 +51,19 @@ Dockercontainer bauen (dauert je nach Computer und Arbeitsspeicher zwischen 3 un
 ```
 docker build --platform=linux/amd64 -t ros2-vnc .
 ```
-![Build](./assets/simulation/1terminal.png)
+![Build](./assets/quickstart/1terminal.png)
 
 Wenn der Container erfolgreich gebaut ist, den Dockercontainer starten:
 ```
 docker compose -f docker-compose.run.yml up
 ```
 
-![Run](./assets/simulation/2terminal.png)
+![Run](./assets/quickstart/2terminal.png)
 
 
 Danach im Browser öffnen: http://localhost:8080/vnc.html und auf "Verbinden klicken"
 
-![noVNC](./assets/simulation/3vnc.png)
+![noVNC](./assets/quickstart/3vnc.png)
 
 Optional in VNC Viewer integrieren
 - VNC Viewer (oder alternative Software) öffnen
@@ -75,16 +75,16 @@ Optional in VNC Viewer integrieren
 ## Simulation starten
 Terminal in Simulation öffnen, dann öffnet sich automatisch ein 4-geteiltes Terminalfenster mit 4 Kommandos.
 
-![TMUX](./assets/simulation/4tmux.png)
+![TMUX](./assets/quickstart/4tmux.png)
 
 
 In Fenster 1, links oben, startet das Programm "Gazebo", das ein Labyrinth zeigt. Hier ist Links unten ein Button "Run the simulation", diesen drücken.
 
-![Gazebo](./assets/simulation/5maze.png)
+![Gazebo](./assets/quickstart/5maze.png)
 
 In Fenster 2, links unten, startet der Virtuelle Controller für den Roboter.
 
-![Virtual Joystick](./assets/simulation/6joystick.png)
+![Virtual Joystick](./assets/quickstart/6joystick.png)
 
 Fenster 3, rechts oben, platziert einen blauen Eduardroboter im Labyrinth in Fenster 1. Wenn du die Simulation in Fenster 1 gestartet hast, klicke in dieses Terminalfenster (rechts unten in der grünen Leiste steht dann der Name des Fensters "3. Add Eduard"). Drücke Enter, dann ist der blaue Roboter im Labyrinth.
 Skaliere das Fenster ggf., sodass du die Buttons unten siehst und drücke "Remote". Erfolgreich, wenn der Button grün wird. Dann kannst du mit dem linken Joystick fahren und mit dem rechten Joystick dich drehen.
@@ -92,7 +92,7 @@ Skaliere das Fenster ggf., sodass du die Buttons unten siehst und drücke "Remot
 
 Optional: Fenster 4 öffnet das Monitoring in RVIZ.
 
-![RViz](./assets/simulation/7rviz.png)
+![RViz](./assets/quickstart/7rviz.png)
 
 
 ## Troubleshooting
