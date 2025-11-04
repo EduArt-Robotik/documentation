@@ -26,7 +26,7 @@ const config = {
   staticDirectories: ['public', 'static'],
 
   // Set the production url of your site here
-  url: 'https://test.eduart-robotik.de',
+  url: 'https://docs.eduart-robotik.de',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -42,8 +42,8 @@ const config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'de',
+    locales: ['de', 'en'],
   },
 
   presets: [
@@ -96,6 +96,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      // Declare some <meta> tags
+    metadata: [
+      {name: 'keywords', content: 'ros, robotics, programming, engineering'},
+      {name: 'twitter:card', content: 'summary_large_image'},
+    ],
+
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
