@@ -65,42 +65,47 @@ function MyColorModeButton() {
 
 // Language Submenu (wenn i18n genutzt wird)
 function MyLocaleDropdown() {
-  const {siteConfig, i18n} = useDocusaurusContext();
-  const history = useHistory();
+  const {siteConfig} = useDocusaurusContext();
   const location = useLocation();
   const [open, setOpen] = useState(false);
 
-  if (!i18n || !i18n.locales || i18n.locales.length <= 1) {
-    // Nur eine Sprache → nichts anzeigen
+  const i18nConfig = siteConfig.i18n;
+  if (!i18nConfig || !i18nConfig.locales || i18nConfig.locales.length <= 1) {
+    // nur eine Sprache konfiguriert → kein Switcher nötig
     return null;
   }
 
-  const {currentLocale, locales, defaultLocale, localeConfigs} = i18n;
-  const baseUrl = siteConfig.baseUrl || '/';
-  const baseWithoutTrailing = baseUrl.endsWith('/')
-    ? baseUrl.slice(0, -1)
-    : baseUrl;
+  const {locales, defaultLocale, localeConfigs} = i18nConfig;
 
-  const buildPathForLocale = (newLocale) => {
-    let path = location.pathname;
+  const rawBase = siteConfig.baseUrl || '/'; // z.B. '/' oder '/docs/'
+  const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 
-    // Pfad relativ zu baseUrl
-    if (path.startsWith(baseUrl)) {
-      path = path.slice(baseUrl.length - 1); // baseUrl enthält den Slash
+  // Pfad relativ zur BaseUrl ermitteln
+  let relPath = location.pathname;
+  if (relPath.startsWith(base)) {
+    relPath = relPath.slice(base.length - 1); // base enthält den führenden '/'
+  }
+  if (!relPath.startsWith('/')) relPath = '/' + relPath;
+
+  // Aktuellen Locale aus der URL bestimmen
+  let currentLocale = defaultLocale;
+  let pathWithoutLocale = relPath;
+
+  const match = relPath.match(/^\/([^/]+)(\/.*)?$/);
+  if (match && locales.includes(match[1])) {
+    currentLocale = match[1];
+    pathWithoutLocale = match[2] || '/';
+  }
+
+  // URL für gewünschte Sprache bauen (gleicher Unterpfad)
+  const baseNoSlash = base.endsWith('/') ? base.slice(0, -1) : base;
+
+  const makeLocaleUrl = (locale) => {
+    if (locale === defaultLocale) {
+      // Default: ohne Locale im Pfad
+      return `${baseNoSlash}${pathWithoutLocale}`;
     }
-    if (!path.startsWith('/')) path = '/' + path;
-
-    // Eventuellen Locale-Prefix entfernen (/de/intro -> /intro)
-    const match = path.match(/^\/([^/]+)(\/.*)?$/);
-    if (match && locales.includes(match[1])) {
-      path = match[2] || '/';
-    }
-
-    // für defaultLocale kein Prefix, sonst /locale/…
-    if (newLocale === defaultLocale) {
-      return `${baseWithoutTrailing}${path}`;
-    }
-    return `${baseWithoutTrailing}/${newLocale}${path}`;
+    return `${baseNoSlash}/${locale}${pathWithoutLocale}`;
   };
 
   const handleSelect = (locale) => {
@@ -108,13 +113,13 @@ function MyLocaleDropdown() {
       setOpen(false);
       return;
     }
-    const newPath = buildPathForLocale(locale);
-    history.push(newPath);
-    setOpen(false);
+    const target = makeLocaleUrl(locale);
+    window.location.href = target; // harter Wechsel → garantiert neue Locale
   };
 
   const currentLabel =
-    localeConfigs?.[currentLocale]?.label || currentLocale.toUpperCase();
+    (localeConfigs && localeConfigs[currentLocale]?.label) ||
+    currentLocale.toUpperCase();
 
   return (
     <div className="locale-menu">
@@ -138,7 +143,8 @@ function MyLocaleDropdown() {
         >
           {locales.map((locale) => {
             const label =
-              localeConfigs?.[locale]?.label || locale.toUpperCase();
+              (localeConfigs && localeConfigs[locale]?.label) ||
+              locale.toUpperCase();
             const isActive = locale === currentLocale;
             return (
               <li key={locale}>
@@ -160,6 +166,7 @@ function MyLocaleDropdown() {
     </div>
   );
 }
+
 
 // Deine Menüstruktur
 
