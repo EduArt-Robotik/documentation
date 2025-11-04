@@ -27,6 +27,12 @@ Render LaTeX https://docusaurus.io/docs/markdown-features/math-equations
 npm install --save remark-math@6 rehype-katex@7
 ```
 
+Use lokale search 
+````
+npm install @easyops-cn/docusaurus-search-local
+```
+
+
 
 
 # Website

@@ -99,13 +99,13 @@ const config = {
       // Declare some <meta> tags
     metadata: [
       {name: 'keywords', content: 'ros, robotics, programming, engineering'},
-      {name: 'twitter:card', content: 'summary_large_image'},
     ],
 
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
         respectPrefersColorScheme: true,
+
       },
       navbar: {
         title: 'Start',
@@ -118,19 +118,15 @@ const config = {
         },
         items: [
           
-          { href: 'http://test.eduart-robotik.com/', label: 'Back to Website', position: 'right' }, // optional zusätzlicher Link
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
-          },
+          // rechte Seite: Sprache + Suche
+      {
+        type: 'localeDropdown',
+        position: 'right',
+      },
+      {
+        type: 'search',
+        position: 'right',
+      },
           
         ],
       },
@@ -185,6 +181,7 @@ const config = {
         additionalLanguages: ['powershell', 'bash'],
       },
     }),
+    plugins: [require.resolve('@easyops-cn/docusaurus-search-local')],
 };
 
 

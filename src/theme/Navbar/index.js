@@ -3,6 +3,11 @@ import React, {useState} from 'react';
 import Link from '@docusaurus/Link';
 import '@site/src/css/header.css';
 
+// Docusaurus eigene Navbar-Komponenten:
+import SearchBar from '@theme/SearchBar';
+import ColorModeToggle from '@theme/ColorModeToggle';
+import LocaleDropdownNavbarItem from '@theme/NavbarItem/LocaleDropdownNavbarItem';
+
 
 const isExternal = (url) => /^https?:\/\//i.test(url);
 function SmartLink({to, href, children, ...rest}) {
@@ -30,21 +35,20 @@ function MenuList({items}) {
 const menuData = [
   {
     label: 'Home',
-    to: 'https://test.eduart-robotik.com',
+    to: 'https://eduart-robotik.com',
   },
   {label: 'Products', 
-    to: 'https://test.eduart-robotik.com/products', 
+    to: 'https://eduart-robotik.com/products', 
     children: [
-      {label: 'R&D Platform "Eduard"', to: 'http://test.eduart-robotik.com/products/rd-platform-eduard/'},
-      {label: '@work Platform "Arthur"', to: 'http://test.eduart-robotik.com/products/atWork-platform-arthur/'},
-      {label: 'Kinematics Kit "Kim"', to: 'http://test.eduart-robotik.com/products/kinematics-kit-kim/'},
-      {label: 'Sensor ring "Vision360"', to: 'http://test.eduart-robotik.com/products/sensor-ring-vision360/'},
+      {label: 'R&D Platform "Eduard"', to: 'https://eduart-robotik.com/products/rd-platform-eduard/'},
+      {label: '@work Platform "Arthur"', to: 'https://eduart-robotik.com/products/atWork-platform-arthur/'},
+      {label: 'Kinematics Kit "Kim"', to: 'https://eduart-robotik.com/products/kinematics-kit-kim/'},
+      {label: 'Sensor ring "Vision360"', to: 'https://eduart-robotik.com/products/sensor-ring-vision360/'},
     ] 
 }, 
-  {label: 'Contact', to: 'http://test.eduart-robotik.com/contact/'},
-  {label: 'Documentation', to: '/', children: [
-      {label: 'Log', to: '/blog'},
-  ],},
+  {label: 'Contact', to: 'https://eduart-robotik.com/contact/'},
+  {label: 'Documentation', to: '/',  /* children: [{label: 'Log', to: '/blog' },
+  ],*/},
 ];
 
 export default function Navbar() {
@@ -86,37 +90,10 @@ export default function Navbar() {
             <MenuList items={menuData} />
           </nav>
 
-          <div className="social-icons" aria-label="Social Media">
-            <a href="https://forum.eduart-robotik.com" aria-label="Forum">
-              <picture>
-                <source srcSet="icons/forum.svg" type="image/svg+xml" />
-                <img src="icons/forum.png" alt="Forum" />
-              </picture>
-            </a>
-            <a href="https://www.youtube.com/@eduart_robotik" aria-label="YouTube">
-              <picture>
-                <source srcSet="icons/youtube.svg" type="image/svg+xml" />
-                <img src="icons/youtube.png" alt="YouTube" />
-              </picture>
-            </a>
-            <a href="https://www.instagram.com/eduart_robotik/" aria-label="Instagram">
-              <picture>
-                <source srcSet="icons/instagram.svg" type="image/svg+xml" />
-                <img src="icons/instagram.png" alt="Instagram" />
-              </picture>
-            </a>
-            <a href="https://www.linkedin.com/company/eduart-robotik/" aria-label="LinkedIn">
-              <picture>
-                <source srcSet="icons/linkedin.svg" type="image/svg+xml" />
-                <img src="icons/linkedin.png" alt="LinkedIn" />
-              </picture>
-            </a>
-            <a href="https://github.com/EduArt-Robotik" aria-label="GitHub">
-              <picture>
-                <source srcSet="icons/github.svg" type="image/svg+xml" />
-                <img src="icons/github.png" alt="GitHub" />
-              </picture>
-            </a>
+          
+          <div className="social-icons">
+            <SearchBar />
+
           </div>
 
           <ul
