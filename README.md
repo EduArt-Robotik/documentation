@@ -32,11 +32,15 @@ Use lokale search
 npm install @easyops-cn/docusaurus-search-local
 ```
 
-Light- und Darkmode Icons
+Light- und Darkmode Icons and Language Icon
 ````
 npm install lucide-react
 ```
 
+Add english translation
+```
+npx docusaurus write-translations --locale en
+```
 
 
 # Website

@@ -65,61 +65,40 @@ function MyColorModeButton() {
 
 // Language Submenu (wenn i18n genutzt wird)
 function MyLocaleDropdown() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   const location = useLocation();
   const [open, setOpen] = useState(false);
 
-  const i18nConfig = siteConfig.i18n;
-  if (!i18nConfig || !i18nConfig.locales || i18nConfig.locales.length <= 1) {
-    // nur eine Sprache konfiguriert → kein Switcher nötig
-    return null;
-  }
+  const i18n = siteConfig.i18n;
+  if (!i18n || !i18n.locales || i18n.locales.length <= 1) return null;
 
-  const {locales, defaultLocale, localeConfigs} = i18nConfig;
+  const { locales, defaultLocale, localeConfigs } = i18n;
+  const pathname = location.pathname;
 
-  const rawBase = siteConfig.baseUrl || '/'; // z.B. '/' oder '/docs/'
-  const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+  // Aktuelles Locale bestimmen: Ist erstes Segment eine Sprache?
+  const pathParts = pathname.replace(/^\/+/, '').split('/');
+  const firstSegment = pathParts[0];
+  const hasLocalePrefix = locales.includes(firstSegment);
+  const currentLocale = hasLocalePrefix ? firstSegment : defaultLocale;
 
-  // Pfad relativ zur BaseUrl ermitteln
-  let relPath = location.pathname;
-  if (relPath.startsWith(base)) {
-    relPath = relPath.slice(base.length - 1); // base enthält den führenden '/'
-  }
-  if (!relPath.startsWith('/')) relPath = '/' + relPath;
+  // Pfad ohne das Sprach-Präfix rekonstruieren
+  const pathWithoutLocale = hasLocalePrefix
+    ? '/' + pathParts.slice(1).join('/')
+    : pathname;
 
-  // Aktuellen Locale aus der URL bestimmen
-  let currentLocale = defaultLocale;
-  let pathWithoutLocale = relPath;
-
-  const match = relPath.match(/^\/([^/]+)(\/.*)?$/);
-  if (match && locales.includes(match[1])) {
-    currentLocale = match[1];
-    pathWithoutLocale = match[2] || '/';
-  }
-
-  // URL für gewünschte Sprache bauen (gleicher Unterpfad)
-  const baseNoSlash = base.endsWith('/') ? base.slice(0, -1) : base;
-
+  // Ziel-URL bauen
   const makeLocaleUrl = (locale) => {
-    if (locale === defaultLocale) {
-      // Default: ohne Locale im Pfad
-      return `${baseNoSlash}${pathWithoutLocale}`;
-    }
-    return `${baseNoSlash}/${locale}${pathWithoutLocale}`;
+    if (locale === defaultLocale) return pathWithoutLocale;
+    return `/${locale}${pathWithoutLocale}`;
   };
 
   const handleSelect = (locale) => {
-    if (locale === currentLocale) {
-      setOpen(false);
-      return;
-    }
-    const target = makeLocaleUrl(locale);
-    window.location.href = target; // harter Wechsel → garantiert neue Locale
+    if (locale === currentLocale) return setOpen(false);
+    window.location.href = makeLocaleUrl(locale);
   };
 
   const currentLabel =
-    (localeConfigs && localeConfigs[currentLocale]?.label) ||
-    currentLocale.toUpperCase();
+    localeConfigs?.[currentLocale]?.label ?? currentLocale.toUpperCase();
 
   return (
     <div className="locale-menu">
@@ -128,7 +107,7 @@ function MyLocaleDropdown() {
         className="locale-button"
         aria-haspopup="listbox"
         aria-expanded={open}
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => setOpen(!open)}
       >
         <Languages size={16} className="locale-button__icon" />
         <span className="locale-button__label">{currentLabel}</span>
@@ -136,23 +115,16 @@ function MyLocaleDropdown() {
       </button>
 
       {open && (
-        <ul
-          className="locale-dropdown"
-          role="listbox"
-          aria-label="Sprache wählen"
-        >
+        <ul className="locale-dropdown" role="listbox" aria-label="Sprache wählen">
           {locales.map((locale) => {
             const label =
-              (localeConfigs && localeConfigs[locale]?.label) ||
-              locale.toUpperCase();
+              localeConfigs?.[locale]?.label ?? locale.toUpperCase();
             const isActive = locale === currentLocale;
             return (
               <li key={locale}>
                 <button
                   type="button"
-                  className={`locale-dropdown__item ${
-                    isActive ? 'active' : ''
-                  }`}
+                  className={`locale-dropdown__item ${isActive ? 'active' : ''}`}
                   onClick={() => handleSelect(locale)}
                   aria-current={isActive ? 'true' : 'false'}
                 >

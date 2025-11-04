@@ -1,0 +1,30 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.R&D Platform Eduard": {
+    "message": "R&D Platform Eduard",
+    "description": "The label for category 'R&D Platform Eduard' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.R&D Platform Eduard.link.generated-index.description": {
+    "message": "Get an overview of Eduard's repositories and find the right documentation for your Eduard robot.",
+    "description": "The generated-index page description for category 'R&D Platform Eduard' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Bedienungsanleitung": {
+    "message": "Bedienungsanleitung",
+    "description": "The label for category 'Bedienungsanleitung' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Simulation": {
+    "message": "Simulation",
+    "description": "The label for category 'Simulation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Eduard Simulation": {
+    "message": "Eduard Simulation",
+    "description": "The label for category 'Eduard Simulation' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Eduard Simulation.link.generated-index.description": {
+    "message": "Start the simulation of Eduard and explore its features in a virtual environment.",
+    "description": "The generated-index page description for category 'Eduard Simulation' in sidebar 'tutorialSidebar'"
+  }
+}
