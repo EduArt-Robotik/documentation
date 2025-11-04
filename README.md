@@ -32,6 +32,10 @@ Use lokale search
 npm install @easyops-cn/docusaurus-search-local
 ```
 
+Light- und Darkmode Icons
+````
+npm install lucide-react
+```
 
 
 

@@ -5,7 +5,12 @@ import '@site/src/css/header.css';
 
 // Docusaurus eigene Navbar-Komponenten:
 import SearchBar from '@theme/SearchBar';
+
+// Light or Dark Mode Toggle:
 import {useColorMode} from '@docusaurus/theme-common';
+import {Sun, Moon} from 'lucide-react'; // Icon-Paket (Docusaurus nutzt Lucide intern)
+
+
 import LocaleDropdownNavbarItem from '@theme/NavbarItem/LocaleDropdownNavbarItem';
 
 
@@ -32,22 +37,30 @@ function MenuList({items}) {
 
 // Dark- und Lightmode Toggle Button (Beispiel)
 function MyColorModeButton() {
+  const {
+    colorMode,          // 'light' oder 'dark'
+    colorModeChoice,    // user choice (kann null sein)
+    setColorMode,
+  } = useColorMode();
 
-              const { colorMode, // the "effective" color mode, never null
-                      colorModeChoice, // the color mode chosen by the user, can be null
-                      setColorMode, // set the color mode chosen by the user
-                    } = useColorMode();
-            
-              return (
-                <button
-                  onClick={() => {
-                    const nextColorMode = colorModeChoice === 'dark' ? 'light' : 'dark';
-                    setColorMode(nextColorMode);
-                  }}>
-                  Toggle color mode
-                </button>
-              );
-            };
+  const isDark = colorMode === 'dark';
+
+  const toggleMode = () => {
+    const nextMode = colorModeChoice === 'dark' ? 'light' : 'dark';
+    setColorMode(nextMode);
+  };
+
+  return (
+    <button
+      onClick={toggleMode}
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+      title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+      className="theme-toggle"
+    >
+      {isDark ? <Moon size={18} /> : <Sun size={18} />}
+    </button>
+  );
+}
 
 
 // Deine Menüstruktur

@@ -118,3 +118,36 @@
 
 /* Optional: verhindert horizontale Scrollbars durch Hover-Effekte */
 html, body { overflow-x: hidden; }
+
+
+/* Light und Darkmode Button */ 
+/* Einheitliches Design für Light & Dark Mode */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-text);
+  background-color: var(--color-background); /* deine Firmenfarbe */
+  color: var(--color-text); /* Textfarbe bleibt gleich */
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg);
+  opacity: 0.9;
+  background-color: var(--color-company-primary); /* Hover-Farbe */
+}
+
+.theme-toggle svg {
+  stroke-width: 1.75;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:active svg {
+  transform: scale(0.9);
+}
