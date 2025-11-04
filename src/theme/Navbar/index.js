@@ -10,8 +10,10 @@ import SearchBar from '@theme/SearchBar';
 import {useColorMode} from '@docusaurus/theme-common';
 import {Sun, Moon} from 'lucide-react'; // Icon-Paket (Docusaurus nutzt Lucide intern)
 
-
-import LocaleDropdownNavbarItem from '@theme/NavbarItem/LocaleDropdownNavbarItem';
+// Language Submenu (wenn i18n genutzt wird):
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import {useHistory, useLocation} from '@docusaurus/router';
+import {Globe} from 'lucide-react'; // Icon wie 🌐
 
 
 const isExternal = (url) => /^https?:\/\//i.test(url);
@@ -62,6 +64,56 @@ function MyColorModeButton() {
   );
 }
 
+// Language Submenu (wenn i18n genutzt wird)
+function MyLocaleDropdown() {
+  const {siteConfig, i18n} = useDocusaurusContext();
+  const history = useHistory();
+  const location = useLocation();
+
+  if (!i18n || !i18n.locales || i18n.locales.length <= 1) return null;
+
+  const {currentLocale, locales, defaultLocale, localeConfigs} = i18n;
+  const baseUrl = siteConfig.baseUrl || '/';
+  const baseWithoutSlash = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+
+  const handleChange = (event) => {
+    const newLocale = event.target.value;
+    if (newLocale === currentLocale) return;
+
+    // Berechne Pfad ohne aktuelle Locale
+    let path = location.pathname;
+    const match = path.match(/^\/([^/]+)(\/.*)?$/);
+    if (match && locales.includes(match[1])) {
+      path = match[2] || '/';
+    }
+
+    // Baue neuen Pfad mit gewünschter Locale
+    const newPath =
+      newLocale === defaultLocale
+        ? `${baseWithoutSlash}${path}`
+        : `${baseWithoutSlash}/${newLocale}${path}`;
+
+    history.push(newPath);
+  };
+
+  return (
+    <div className="locale-dropdown">
+      <Globe size={18} className="locale-icon" />
+      <select
+        className="locale-select"
+        value={currentLocale}
+        onChange={handleChange}
+        aria-label="Sprache wählen"
+      >
+        {locales.map((locale) => (
+          <option key={locale} value={locale}>
+            {localeConfigs?.[locale]?.label || locale.toUpperCase()}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
 
 // Deine Menüstruktur
 
@@ -128,8 +180,11 @@ export default function Navbar() {
           
           <div className="social-icons">
             
+            
             <SearchBar />
+            <MyLocaleDropdown />
             <MyColorModeButton />
+            
 
           </div>
 
