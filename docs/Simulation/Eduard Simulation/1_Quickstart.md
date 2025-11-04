@@ -9,15 +9,15 @@ Diese Anleitung ist dafür gedacht, schnell in die Eduard Simulation zu starten.
 Die folgenden Quickstart-Anleitungen sind Betriebssystemunabhängig, um die Einrichtung von Ubuntu auf dem eigenen Betriebssystem oder als Virtuelle Maschine zu vermeiden. Für Linuxnutzer empfielht es sich, die "normale" Installation zu verwenden (Weiter bei tbd).
 ## Voraussetzungen
 
-- Vorhandener Github Account mit hinterlegtem SSH Key für `git clone` (vgl. https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- Vorhandener Github Account mit hinterlegtem SSH Key für `git clone` [Anleitung](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 ## Benötigte Software
 
-- Docker Hub (vgl. https://docs.docker.com/desktop/setup/install/mac-install/), installiert, AGBs akzeptiert und mal geöffnet
+- Docker Hub [Downloadlink](https://docs.docker.com/desktop/setup/install/mac-install/), installiert, AGBs akzeptiert und mal geöffnet
 
 optional
-- VNC Viewer installiert (vgl. https://www.realvnc.com/de/connect/download/viewer/)
-- Visual Studio Code installiert (vgl. https://code.visualstudio.com/download)
+- VNC Viewer installiert [Downloadlink](https://www.realvnc.com/de/connect/download/viewer/)
+- Visual Studio Code installiert [Downloadlink](https://code.visualstudio.com/download)
 
 ## Installation
 - Erstelle einen Ordner "EduArt" in deinen Dokumenten
@@ -107,4 +107,3 @@ und danach dann
 ```
 docker compose -f docker-compose.run.yml up
 ```
-
