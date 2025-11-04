@@ -5,7 +5,7 @@ import '@site/src/css/header.css';
 
 // Docusaurus eigene Navbar-Komponenten:
 import SearchBar from '@theme/SearchBar';
-import ColorModeToggle from '@theme/ColorModeToggle';
+import {useColorMode} from '@docusaurus/theme-common';
 import LocaleDropdownNavbarItem from '@theme/NavbarItem/LocaleDropdownNavbarItem';
 
 
@@ -29,6 +29,26 @@ function MenuList({items}) {
     </ul>
   );
 }
+
+// Dark- und Lightmode Toggle Button (Beispiel)
+function MyColorModeButton() {
+
+              const { colorMode, // the "effective" color mode, never null
+                      colorModeChoice, // the color mode chosen by the user, can be null
+                      setColorMode, // set the color mode chosen by the user
+                    } = useColorMode();
+            
+              return (
+                <button
+                  onClick={() => {
+                    const nextColorMode = colorModeChoice === 'dark' ? 'light' : 'dark';
+                    setColorMode(nextColorMode);
+                  }}>
+                  Toggle color mode
+                </button>
+              );
+            };
+
 
 // Deine Menüstruktur
 
@@ -91,8 +111,12 @@ export default function Navbar() {
           </nav>
 
           
+
+          
           <div className="social-icons">
+            
             <SearchBar />
+            <MyColorModeButton />
 
           </div>
 
@@ -108,5 +132,7 @@ export default function Navbar() {
         </nav>
       </div>
     </>
+
+
   );
 }

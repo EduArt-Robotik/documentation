@@ -42,8 +42,8 @@ const config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'de',
-    locales: ['de', 'en'],
+    defaultLocale: 'en',
+    locales: ['en'],
   },
 
   presets: [
@@ -104,8 +104,9 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
-        respectPrefersColorScheme: true,
-
+        defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
       },
       navbar: {
         title: 'Start',
