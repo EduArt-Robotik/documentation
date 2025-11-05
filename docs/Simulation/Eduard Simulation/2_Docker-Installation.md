@@ -1,33 +1,37 @@
 ---
+id: dockerinstallation
+title: Plattformunabhängige Installation mit Docker
 sidebar_position: 2
 ---
-Voraussetzungen
-- VSC installiert
-- Docker kann installiert werden
-- ggf. VNC Viewer installieren
-- Browser installiert :D
-
 # Plattformunabhängige Installation mit Docker
 
-Mit dieser Variante kann man das folgende Simulationstutorial direkt im Browser ausführen, ohne Ubuntu oder ROS Nativ oder in einer VM installiert zu haben. Ubuntu und ROS laufen lediglich in einem Dockercontainer.
+Diese Anleitung richtet sich an alle, die kein vorgefertigtes Repo klonen wollen, sondern sich einen leeren, lauffähigen Linux Dockercontainer selbst erstellen und entweder im Browser oder im VNC Viewer anzeigen lassen wollen. Das ganze wird für Mac und Windows empfohlen, Linux- oder Ubuntunutzer können direkt weiter ins Kapitel >>TODO<< ROS Workspace springen. 
 
-1. Installation von Docker Hub: https://docs.docker.com/desktop/setup/install/mac-install/
-2. Empfohlene Einstellungen verwenden
+## Voraussetzungen
 
-Nur für Mac-Nutzer mit Silikon Chip: `softwareupdate --install-rosetta` ins Terminal eingeben und installieren
+- Vorhandener Github Account mit hinterlegtem SSH Key für `git clone` [Anleitung](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
-3. In DockerHub (links in der Seitenleiste) nach ROS suchen oder im Terminal am Computer `docker pull ros:jazzy-ros-core` eingeben
-4. Bei Version bzw. Latest "jazzy-ros-core" auswählen und Run klicken, Image erstellen (hier keine Eingabe nötig)
-5. Lokal auf dem Rechner neuen Ordner namens "Docker" erstellen (name ist eig egal, aber wir werden im Folgenden mit dem Ordner namens Docker arbeiten)
-6. in den Ordner "Docker" navigieren
-entweder ins Terminal cd eingeben und mit Tabulator-Taste die Auswahlvorschläge anzeigen und stück für stück in den Ordner rein navigieren, oder über den Explorer / Finder in den Ordner gehen und rechtsklick "Terminal im Ordner öffnen" eingeben
+## Benötigte Software
 
-Im Ordner Docker nun 2 Dateien anlegen:
-- Datei1 "Dockerfile"
-- folgenden Inhalt reinkopieren und speichern
+- Docker Hub [Downloadlink](https://docs.docker.com/desktop/setup/install/mac-install/), installiert, AGBs akzeptiert und mal geöffnet
+- Visual Studio Code installiert [Downloadlink](https://code.visualstudio.com/download)
+
+optional
+- VNC Viewer installiert [Downloadlink](https://www.realvnc.com/de/connect/download/viewer/)
+
+## Installation
+- Erstelle einen Ordner "edu_simulation_quickstart" in deinen Dokumenten
+- Öffne den Ordner edu_simulation_quickstart in VSC als Workspace (an sich ists egal wie der Ordner heißt, aber wir bauen eine vereinfachte Version des Quickstarts aus dem vorherigen Kapitel, deswegen verwenden wir den Namen im Folgenden.)
+- Lege folgende Dateien an (Readme.md ist optional)
+
+![Bild](./assets/docker/manuell1.png)
+
+Kopiere folgenden Inhalt in die Dateien:
+
+### Dockerfile
 
 ```dockerfile
-FROM osrf/ros:jazzy-desktop
+FROM osrf/ros:jazzy-desktop 
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -36,30 +40,6 @@ RUN apt update && apt install -y \
     sudo net-tools curl wget && \
     rm -rf /var/lib/apt/lists/*
 
-# User anlegen
-RUN useradd -m ros && echo "ros:ros" | chpasswd && adduser ros sudo
-USER ros
-WORKDIR /home/ros
-ENV HOME=/home/ros
-ENV USER=ros
-
-USER root
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-EXPOSE 8080
-CMD ["/usr/bin/supervisord"]
-```
-
-- Alternative mit mehr Dependencies (dauert länger aber man spart sich das Workspace anlegen)
-```dockerfile
-FROM osrf/ros:jazzy-desktop
-
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt update && apt install -y \
-    xfce4 xfce4-terminal x11vnc xvfb novnc websockify supervisor dbus-x11 \
-    sudo net-tools curl wget && \
-    rm -rf /var/lib/apt/lists/*
 
 # User anlegen
 RUN useradd -m ros && echo "ros:ros" | chpasswd && adduser ros sudo
@@ -95,15 +75,6 @@ RUN bash -c "\
     && pip3 install flet setuptools pyyaml \
     && pip install 'flet[all]==0.25.1' --upgrade"
 
-# Configuration
-RUN touch ~/.tmux.conf
-RUN echo "set -g default-terminal \"screen-256color\"" >> ~/.tmux.conf
-RUN echo "set -g mouse on" >> ~/.tmux.conf
-
-# Source ROS files
-RUN echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
-RUN echo "source /home/ros/ros2_ws/install/setup.bash" >> ~/.bashrc
-
 # Install EduRobot dependencies
 RUN apt update \
     && apt install -y \
@@ -117,59 +88,21 @@ RUN apt update \
     ros-jazzy-ros-gz \
     ros-jazzy-xacro \
     ros-jazzy-rviz2
-
-RUN mkdir /home/ros/ros2_ws/src -p
-WORKDIR /home/ros/ros2_ws
-
-# Get EduArt repos
-RUN bash -c "\
-    source /opt/ros/jazzy/setup.bash \
-    && git clone https://github.com/EduArt-Robotik/edu_robot.git src/edu_robot\
-    && colcon build --symlink-install --packages-select edu_robot --event-handlers console_direct+"
-    
-# Get EduArt repos
-RUN bash -c "\
-    source /opt/ros/jazzy/setup.bash \
-    && git clone https://github.com/EduArt-Robotik/edu_robot_control.git src/edu_robot_control\
-    && colcon build --symlink-install --packages-select edu_robot_control --event-handlers console_direct+"
-
-# Get EduArt repos
-RUN bash -c "\
-    source /opt/ros/jazzy/setup.bash \
-    && git clone -b 0.3.0 https://github.com/EduArt-Robotik/edu_simulation.git src/edu_simulation\
-    && colcon build --symlink-install --packages-select edu_simulation --event-handlers console_direct+"
-
-# Get EduArt repos
-RUN bash -c "\
-    source /opt/ros/jazzy/setup.bash \
-    && git clone -b develop https://github.com/EduArt-Robotik/edu_virtual_joy.git src/edu_virtual_joy\
-    && colcon build --symlink-install --packages-select edu_virtual_joy --event-handlers console_direct+"
-
-# Open virtual joystick in a window, not in the browser (doesn't work in dev container)
-RUN sed -i 's\ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=8888, assets_dir="assets")\ft.app(target=main, assets_dir="assets")\g' /home/ros/ros2_ws/src/edu_virtual_joy/edu_virtual_joy/edu_virtual_joy.py
-
-# Set ROS varables
-ENV ROS_DOMAIN_ID=0
-ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-#ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-
-# Set Python environment
-ENV PYTHONPATH='/home/ros/python_env/.flet/lib/python3.12/site-packages'
-
-# Enable color on command prompt
-ENV TERM=xterm-256color
-ENV color_prompt=yes
 ```
 
-- Datei 2 "supervisord.conf" erstellen
-folgenden Inhalt reinkopieren
+`FROM osrf/ros:jazzy-desktop` 
+Ist der Dockercontainer, der als Basis verwendet wird. Diesen findet man auch in der App Docker im Dockerhub. Als Alternative hierzu können auch andere ROS und Linuxversionen verwendet werden.
 
-```supervisord.conf
+Alle anderen Befehle legen z.B. den Benutzer "ros" an, laden Pakete runter, installieren Dinge oder erstellen Ordner, die irgendwann mal gebraucht werden. Das könnte man auch alles hier in der Datei weglassen und stattdessen im neuen Betriebssystem dann im Terminal nachinstallieren. Wir sparen uns aber den Aufwand und die Nerven, alle fehlenden Pakete einzeln zu installieren. 
+
+## supervisord.conf
+
+```config
 [supervisord]
 nodaemon=true
 
 [program:Xvfb]
-command=/usr/bin/Xvfb :0 -screen 0 1280x800x24
+command=/usr/bin/Xvfb :0 -screen 0 1920x900x24
 priority=1
 autostart=true
 autorestart=true
@@ -193,31 +126,50 @@ priority=4
 autostart=true
 autorestart=true
 ```
+Diese Datei sorgt dafür, dass ein Computer ohne echten Bildschirm trotzdem eine grafische Oberfläche hat.  
+**Xvfb** tut so, als gäbe es einen Bildschirm.  
+**x11vnc** macht diesen Bildschirm über das Internet erreichbar.  
+**xfce4** zeigt den Desktop, und **noVNC** erlaubt, ihn direkt im Webbrowser zu sehen.
 
-Dann in VSC ein Terminal öffnen und folgende Befehle nacheinander eingeben:
+## Testen des Containers
+
+Damit wir nun in unserem Browser ein Linuxbetriebssystem anzeigen können, reicht das erstmal. Wir öffnen nun in VSC ein Terminal und geben folgendes ein, um den Container zu bauen.
+
 ```
 docker build --platform=linux/amd64 -t ros2-vnc .
 ```
-- baut das Ding 
 
-```shell
+So sollte das dann aussehen (kann ein paar min dauern):
+![Bild](./assets/docker/manuell2.png)
+Nun starten wir den Container:
+
+```
 docker run --platform=linux/amd64 -p 8080:8080 --shm-size=2g --name ros2-vnc-test ros2-vnc
 ```
-- führt es aus
-- dann im Browser eingeben: http://localhost:8080/vnc.html und ausführen klicken
-- dann müsste man Ubuntu im Browser sehen können
 
-Vorteil: kein VNC Viewer nötig
-Nachteil: ich hab bisher nicht rausgefunden, wie man Kopiert und einfügt.
+Das sieht dann in etwa so aus:
 
-Deswegen zusätzlich VNC Viewer verwenden:
-1. VNC Viewer öffnen
-2. Datei / Neue Verbindung / localhost:5900
-3. Doppelklick auf die Verbindug zum Starten
+![Bild](./assets/docker/manuell3.png)
+Dann öffnen wir den Browser und geben ein: http://localhost:8080/vnc.html 
 
-dann statt dem obrigen docker run befehl, den hier im VSC Terminal im Ordner "Docker" ausführen:
+![noVNC](./assets/quickstart/3vnc.png)
 
-```shell
+Auf "Verbinden" klicken und wir haben ein Linuxbetriebssystem im Browser.
+
+![Bild](./assets/docker/manuell.png)
+
+Beenden kann man das ganze im Terminal mit strg + c bzw. ctrl + c (aber dann ist die Website auch nicht mehr erreichbar).
+
+Möchte man nun das ganze noch z. B. im VNC Viewer statt im Browser angucken, kann man sich diesen (oder ähnliche Programme) runterladen. Copy und Paste ist hier z.B. etwas einfacher als in der Browserversion. 
+
+Dann im VNC Viewer 
+`Datei / Neue Verbindung / localhost:5900` 
+
+![Bild](./assets/docker/manuell4.png)
+
+Das einzige was man dann beachten muss, dass der Terminalbefehl nun um einen zweiten Port ergänzt wird. Wir starten nun mit
+
+```
 docker run -it \
   -p 8080:8080 \
   -p 5900:5900 \
@@ -226,11 +178,62 @@ docker run -it \
   ros2-vnc
 ```
 
-Jetzt ists egal, ob man die Verbindung im Browser anzeigt oder im VNC Viewer. Geht auch beides gleichzeitig, wenn man Verwirrung mag.
+Mit den Pfeiltasten nach oben kann man sich durch bisherige Linux Kommandozeilenbefehle durchklicken. Und weil es ätzend ist, jedes mal durch so lange Befehle zu klicken, erstellen wir uns nun die letzte Datei.
+
+### docker-compose.run.yml
 
 
-# Troubleshooting
-- Docker container "ros2-vnc-test" existiert bereits: 
-```shell
+```yml
+version: "3.9"
+
+services:
+  ros2-vnc:
+    image: ros2-vnc
+    container_name: ros2-vnc-test
+    ports:
+      - "8080:8080"
+      - "5900:5900"
+    shm_size: "2g"
+    tty: true        # entspricht -t
+    stdin_open: true # entspricht -i
+    restart: unless-stopped
+
+```
+
+Die macht nichts anderes, als den letztem Befehl von oben zu kürzen auf 
+
+```
+docker compose -f docker-compose.run.yml up
+```
+
+Damit das klappt, müssen wir nun einmalig den auf die alte weise gebauten Container auf die alte Weise löschen: 
+
+```
+docker rm -f ros2-vnc-test
+```
+
+Und nun können wir den Dockercontainer starten. 
+
+```
+docker compose -f docker-compose.run.yml up
+```
+
+Oder beenden.
+
+```
+docker compose -f docker-compose.run.yml down
+```
+
+Jetzt gehts weiter mit dem Anlegen eines ROS-Workspaces in unserem Linux Betriebssystem. 
+
+## Troubleshooting
+
+`ERROR: Cannot connect to the Docker daemon at unix:///Users/sinasteinmueller/.docker/run/docker.sock. Is the docker daemon running?`
+- Docker Hub App starten
+
+`docker: Error response from daemon: Conflict. The container name "/ros2-vnc-test" is already in use by container`
+- Folgenden Befehl eingeben um Container zu schließen
+
+```
 docker rm -f ros2-vnc-test
 ```

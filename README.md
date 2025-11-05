@@ -47,3 +47,6 @@ npx docusaurus write-translations --locale en
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
+
+# VSC Plugins
+Markdown Preview Enhanced 

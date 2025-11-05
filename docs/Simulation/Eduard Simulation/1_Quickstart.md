@@ -109,3 +109,16 @@ und danach dann
 ```
 docker compose -f docker-compose.run.yml up
 ```
+
+## Tipps
+Bildschirmgröße des Containers ändern 
+- In Datei `supervisord.conf` im geklonten Repo in folgender Zeile
+
+```
+command=/usr/bin/Xvfb :0 -screen 0 1920x900x24
+```
+
+Hintergrundbild ändern
+- Vor dem Bauen des Containers das Aktuelle Hintergrundbild `Docker-Background.svg` durch die neue, gewünschte SVG (!) Datei ersetzen
+- Repo neu bauen und starten
+
