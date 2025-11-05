@@ -1,7 +1,7 @@
 ---
-id: dockerinstallation
-title: Plattformunabhängige Installation mit Docker
-sidebar_position: 2
+id: installationsvarianten
+title: Installationsvarianten
+sidebar_position: 3
 ---
 
 # Installationsvarianten

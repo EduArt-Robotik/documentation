@@ -1,4 +1,6 @@
 ---
+id: simulation
+title: Simulation
 sidebar_position: 5
 ---
 # edu_simulation

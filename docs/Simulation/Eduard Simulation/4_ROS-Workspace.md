@@ -1,7 +1,9 @@
 ---
+id: rosws
+title: ROS2 Workspace anlegen und bauen
 sidebar_position: 4
 ---
-# ROS2 Workspace anlegen
+# ROS2 Workspace anlegen und bauen
 
 - Im Homeverzeichnis des Linux Betriebssystems einen Ordner "ros2_ws" erstellen
 - In "ros2_ws" den Ordner src erstellen 
