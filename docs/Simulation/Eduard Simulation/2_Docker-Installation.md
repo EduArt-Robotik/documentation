@@ -5,7 +5,7 @@ sidebar_position: 2
 ---
 # Plattformunabhängige Installation mit Docker
 
-Diese Anleitung richtet sich an alle, die kein vorgefertigtes Repo klonen wollen, sondern sich einen leeren, lauffähigen Linux Dockercontainer selbst erstellen und entweder im Browser oder im VNC Viewer anzeigen lassen wollen. Das ganze wird für Mac und Windows empfohlen, Linux- oder Ubuntunutzer können direkt weiter ins Kapitel >>TODO<< ROS Workspace springen. 
+Diese Anleitung richtet sich an alle, die kein vorgefertigtes Repo klonen wollen, sondern sich einen leeren, lauffähigen Linux Dockercontainer selbst erstellen und entweder im Browser oder im VNC Viewer anzeigen lassen wollen. Das ganze wird für Mac und Windows empfohlen, Linux- oder Ubuntunutzer können direkt weiter ins Kapitel >>TODO ROS Workspace springen. 
 
 ## Voraussetzungen
 

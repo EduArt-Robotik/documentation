@@ -18,7 +18,7 @@ Vorteile: Man kann innerhalb vom eigenen Computer schnell auf das Betriebssystem
 Nachteile: Vermutlich die Nutzung von Internet in beiden Betriebssystemen, Copy + Paste könnte ätzend sein, möglicherweise gehen Rechenintensive Programme wie Gazebo und RVIZ nicht oder nur langsam und vlt packt es der Computer gar nicht. 
 
 ## Windows Installation mit WSL 
-HANNEEEES
+>>ToDo HANNEEEES
 
 Vorteile: Läuft auf Windoof.
 Nachteile: Läuft auf Windoof. 
@@ -30,7 +30,7 @@ Vorteile: Immer noch beide Betriebssysteme auf einem Computer. Schneller als ein
 
 Nachteile: Beim Einrichten kann man ggf. was am eigenen Rechner kaputt machen (vor allem bei Mac). Man muss immer Neustarten, um zwischen Betriebssystemen zu wechseln. Man darf die Festplatte nicht verlieren oder vergessen … 
 
-## Alten Computer mit Linux betriebssystem neu Aufsetzen
+## Alten Computer mit Linux Betriebssystem neu aufsetzen
 
 Wie der Titel schon sagt. Löst so gut wie alle Probleme, aber man muss dann halt auch immer 2 Computer mitschleppen.
 
