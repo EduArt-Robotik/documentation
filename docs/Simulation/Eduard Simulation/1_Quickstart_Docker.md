@@ -54,11 +54,12 @@ Dockercontainer bauen (dauert je nach Computer und Arbeitsspeicher zwischen 3 un
 ```
 docker build --platform=linux/amd64 -t ros2-vnc .
 ```
+- Bei Änderungen im Dockerfile oder in der Supervisord.config muss immer neu gebaut werden. Änderungen können Beispielsweise das Hintergrundbild im Container oder die Bildschirmauflösung sein.
 ![Build](./assets/quickstart/1terminal.png)
 
 Wenn der Container erfolgreich gebaut ist, den Dockercontainer starten:
 ```
-docker compose -f docker-compose.run.yml up
+docker compose -f docker-compose.yml up
 ```
 
 ![Run](./assets/quickstart/2terminal.png)
@@ -113,6 +114,8 @@ docker compose -f docker-compose.run.yml up
 
 Fehler `ERROR: Cannot connect to the Docker daemon at unix:///Users/sinasteinmueller/.docker/run/docker.sock. Is the docker daemon running?`
 - Docker Desktop App starten
+
+Bildschirmauflösung passt nicht (Containerinhalt zu klein, zu groß oder abgeschnitten): in der `supervisord.config` Datei die Zeile `command=/usr/bin/Xvfb :0 -screen 0 1920x900x24` mit der gewünschten Bildschirmanpassung ändern, z.B. in 1280x1024x24
 
 ## Tipps
 Bildschirmgröße des Containers ändern 
