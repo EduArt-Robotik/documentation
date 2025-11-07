@@ -48,3 +48,17 @@ npx docusaurus write-translations --locale en
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
+
+# Write Instructions
+
+Filename: 1_schnellstart-docker
+- Number: Same as sidebar_position metadata
+- write everything small
+- schnellstart-docker same as id meta tag (used for references), ATTENTION ALWAYS USE UNIQUE(!!!) IDs, unique IDs necessary for translations!
+
+Content:
+- everything in german in /docs folder
+- for english translations copy file(s) in i18n/en/docusaurus-plugin-content-docs/current folder (or add another translation, check above)
+- same folder structure as in /docs
+- translate document with github copilot
+- make sure that the id is the same as in the original doc in /docs

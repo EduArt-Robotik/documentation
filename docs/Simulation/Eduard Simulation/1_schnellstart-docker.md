@@ -1,10 +1,10 @@
 ---
-id: quickstartDocker
-title: SchnellstartDocker
+id: quickstart-docker #unique ID for translations
+title: Schnellstart mit Docker
 sidebar_position: 1
 ---
 
-# Quickstart mit Docker
+# Schnellstart mit Docker
 
 Diese Anleitung ist dafür gedacht, schnell in die Eduard Simulation zu starten. Wenn du keine Lust auf die manuelle Einrichtung hast und direkt erste Erfahrungen mit der Simulation starten willst, ist diese Anleitung für dich geeignet. Wenn du lernen willst, wie man seine Linuxumgebung selbst einrichtet, überspringe dieses Kapitel und beginne mit "[Plattformunabhängige Installation mit Docker](2_Docker-Installation.md)". 
 

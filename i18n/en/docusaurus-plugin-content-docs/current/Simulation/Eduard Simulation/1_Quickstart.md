@@ -1,5 +1,5 @@
 ---
-id: quickstart
+id: quickstart-docker
 title: Quickstart
 sidebar_position: 1
 ---

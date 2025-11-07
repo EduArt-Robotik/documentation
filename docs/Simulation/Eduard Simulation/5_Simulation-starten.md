@@ -1,9 +1,9 @@
 ---
-id: simulation
-title: Simulation
+id: simulation-starten
+title: Simulation starten
 sidebar_position: 5
 ---
-# edu_simulation
+# Simulation Starten
 
 ## Installation
 

@@ -1,6 +1,6 @@
 ---
-id: rosws
-title: ROS2 Workspace anlegen und bauen
+id: ros-workspace
+title: ROS2 Workspace anlegen
 sidebar_position: 4
 ---
 # ROS2 Workspace anlegen
