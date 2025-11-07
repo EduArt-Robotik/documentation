@@ -8,15 +8,6 @@ sidebar_position: 3
 
 Neben der aktuell beschriebenen Variante über den Dockercontainer im Browser bzw. VNC Viewer, lässt sich die Simulation noch auf einige andere Weisen starten. Im folgenden werden einige Beschrieben.
 
-## Virtuelle Maschine (VM) einrichten
-Hierzu wird ein VM Dienst installiert, z.B. VMware Fusion (für Schüler und Studenten kostenlos), VirtualBox oder Ähnliches.
-
-Dann wird das gewünschte Betriebssystem runtergeladen (für die Simulation mindestens >>TODO nötig) und in die VM geladen, installiert und gestartet und dort folgen dann die kommenden Einrichtungsschritte.
-
-Vorteile: Man kann innerhalb vom eigenen Computer schnell auf das Betriebssystem zugreifen ohne Neustart.
-
-Nachteile: Vermutlich die Nutzung von Internet in beiden Betriebssystemen, Copy + Paste könnte ätzend sein, möglicherweise gehen Rechenintensive Programme wie Gazebo und RVIZ nicht oder nur langsam und vlt packt es der Computer gar nicht. 
-
 
 ## Windows Installation mit WSL 
 
@@ -98,6 +89,16 @@ ros2 launch edu_simulation eduard_monitor.launch.py edu_robot_namespace:=eduard
 ```
 
 Die Fernsteuerung kann in einem Browserfenster unter der Adresse `localhost:8888` geöffnet werden.
+
+
+## Virtuelle Maschine (VM) einrichten
+Hierzu wird ein VM Dienst installiert, z.B. VMware Fusion (für Schüler und Studenten kostenlos), VirtualBox oder Ähnliches.
+
+Dann wird das gewünschte Betriebssystem runtergeladen (für die Simulation mindestens >>TODO nötig) und in die VM geladen, installiert und gestartet und dort folgen dann die kommenden Einrichtungsschritte.
+
+Vorteile: Man kann innerhalb vom eigenen Computer schnell auf das Betriebssystem zugreifen ohne Neustart.
+
+Nachteile: Vermutlich die Nutzung von Internet in beiden Betriebssystemen, Copy + Paste könnte ätzend sein, möglicherweise gehen Rechenintensive Programme wie Gazebo und RVIZ nicht oder nur langsam und vlt packt es der Computer gar nicht. 
 
 
 ## Dual Boot einrichten
