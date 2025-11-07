@@ -1,18 +1,19 @@
 ---
 id: quickstart-docker #unique ID for translations
 title: Schnellstart mit Docker
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Schnellstart mit Docker
 
-Diese Anleitung ist dafür gedacht, schnell in die Eduard Simulation zu starten. Wenn du keine Lust auf die manuelle Einrichtung hast und direkt erste Erfahrungen mit der Simulation starten willst, ist diese Anleitung für dich geeignet. Wenn du lernen willst, wie man seine Linuxumgebung selbst einrichtet, überspringe dieses Kapitel und beginne mit "[Plattformunabhängige Installation mit Docker](2_Docker-Installation.md)". 
+Diese Anleitung ist dafür gedacht, schnell in die Eduard Simulation zu starten. Wenn du keine Lust auf die manuelle Einrichtung hast und direkt erste Erfahrungen mit der Simulation starten willst, ist diese Anleitung für dich geeignet. Wenn du lernen willst, wie man seine Linuxumgebung selbst einrichtet, überspringe dieses Kapitel und beginne mit "[Plattformunabhängige Installation mit Docker](3_docker-installation.md)". 
 
-Die folgenden Quickstart-Anleitungen sind Betriebssystemunabhängig, um die Einrichtung von Ubuntu auf dem eigenen Betriebssystem oder als Virtuelle Maschine zu vermeiden. Für Linuxnutzer empfielht es sich, die "normale" Installation zu verwenden (Weiter bei [ROS Workspace anlegen](4_ROS-Workspace.md)).
+Die folgenden Quickstart-Anleitungen sind Betriebssystemunabhängig, um die Einrichtung von Ubuntu auf dem eigenen Betriebssystem oder als Virtuelle Maschine zu vermeiden. Für Linuxnutzer empfielht es sich, die "normale" Installation zu verwenden (Weiter bei [ROS Workspace anlegen](5_ros-workspace.md)).
 ## Voraussetzungen
 
 - Vorhandener Github Account mit hinterlegtem SSH Key für `git clone` 
-- [SSH Key anlegen](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [SSH Key anlegen](1_github-ssh-key.md) mit der EduArt Anleitung
+- [Offizielle Github Anleitung](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 ## Benötigte Software
 

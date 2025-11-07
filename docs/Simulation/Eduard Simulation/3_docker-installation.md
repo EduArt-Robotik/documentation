@@ -1,7 +1,7 @@
 ---
 id: docker-installation
 title: Plattformunabhängige Installation mit Docker
-sidebar_position: 2
+sidebar_position: 3
 ---
 # Plattformunabhängige Installation mit Docker
 
