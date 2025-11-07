@@ -1,10 +1,9 @@
 # Usage
-- docs/EduArts-Tutorials is main page of this
+- docs/EduArts-Tutorials is main page of this, for better adjustment open /docs Folder in Obsidian App 
 - static includes pictures etc., write path always without static (e.g. logos/EduArtLogo.svg)
 - src/theme/index.js overrides standard menu from docusaurus with EduArt Menu
 
-# ToDo
-- Social Media Icons weg, dafür Suche + Dark/Lightmode Button wieder hin
+
 
 # Installation 
 ```
@@ -14,7 +13,6 @@ npm run start
 ```
 npm run build
 ```
-
 
 
 Use Menu of website instead of Docusaurus menu
@@ -47,6 +45,3 @@ npx docusaurus write-translations --locale en
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-
-# VSC Plugins
-Markdown Preview Enhanced 
