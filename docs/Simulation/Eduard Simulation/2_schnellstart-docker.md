@@ -79,7 +79,13 @@ Optional in VNC Viewer integrieren
 - Copy + Paste über die noVNC Seitenleiste links
 
 ## Simulation starten
-Terminal in Simulation öffnen, dann öffnet sich automatisch ein 4-geteiltes Terminalfenster mit 4 Kommandos.
+Terminal in Simulation öffnen.
+Folgenden Befehl eingeben, dann öffnet sich automatisch ein 4-geteiltes Terminalfenster mit 4 Kommandos.
+
+```
+start-simulation.sh
+```
+
 
 ![TMUX](./assets/quickstart/4tmux.png)
 
