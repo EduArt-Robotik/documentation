@@ -12,6 +12,7 @@ Die folgenden Quickstart-Anleitungen sind Betriebssystemunabhängig, um die Einr
 ## Voraussetzungen
 
 - Vorhandener Github Account mit hinterlegtem SSH Key für `git clone` 
+- [Git](https://git-scm.com/) installiert, auf Mac meist automatisch, auf Windows muss es runtergeladen werden
 - [SSH Key anlegen](1_github-ssh-key.md) mit der EduArt Anleitung
 - [Offizielle Github Anleitung](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 

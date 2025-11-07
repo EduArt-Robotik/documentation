@@ -30,7 +30,7 @@ cat ~/.ssh/id_ed25519.pub
 
 
 ## Windows
-- [https://git-scm.com/](https://git-scm.com/ "https://git-scm.com/") installieren
+- [https://git-scm.com/](https://git-scm.com/) installieren
 - Powershell öffnen und folgenden Befehl eingeben. Die Mailadresse aus Github verwenden!
 
 ```
