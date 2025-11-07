@@ -110,6 +110,10 @@ und danach dann
 docker compose -f docker-compose.run.yml up
 ```
 
+
+Fehler `ERROR: Cannot connect to the Docker daemon at unix:///Users/sinasteinmueller/.docker/run/docker.sock. Is the docker daemon running?`
+- Docker Desktop App starten
+
 ## Tipps
 Bildschirmgröße des Containers ändern 
 - In Datei `supervisord.conf` im geklonten Repo in folgender Zeile
