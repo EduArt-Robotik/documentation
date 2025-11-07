@@ -4,6 +4,9 @@
 - src/theme/index.js overrides standard menu from docusaurus with EduArt Menu
 
 
+# ToDo
+- EduArt Logo vanishes sometimes? find out why and how to fix that
+- structure of tutorials 
 
 # Installation 
 ```
