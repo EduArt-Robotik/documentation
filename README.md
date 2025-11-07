@@ -19,26 +19,31 @@ npm run build
 
 
 Use Menu of website instead of Docusaurus menu
+
 ```
 npx docusaurus swizzle @docusaurus/theme-classic Navbar --eject --danger
 ```
 
 Render LaTeX https://docusaurus.io/docs/markdown-features/math-equations
+
 ```
 npm install --save remark-math@6 rehype-katex@7
 ```
 
 Use lokale search 
-````
+
+```
 npm install @easyops-cn/docusaurus-search-local
 ```
 
 Light- und Darkmode Icons and Language Icon
-````
+
+```
 npm install lucide-react
 ```
 
 Add english translation
+
 ```
 npx docusaurus write-translations --locale en
 ```
