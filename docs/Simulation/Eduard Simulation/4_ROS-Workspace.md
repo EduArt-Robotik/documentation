@@ -3,7 +3,7 @@ id: rosws
 title: ROS2 Workspace anlegen und bauen
 sidebar_position: 4
 ---
-# ROS2 Workspace anlegen und bauen
+# ROS2 Workspace anlegen
 
 - Im Homeverzeichnis des Linux Betriebssystems einen Ordner "ros2_ws" erstellen
 - In "ros2_ws" den Ordner src erstellen 
@@ -20,7 +20,7 @@ colcon build
 Alternativ zur oben genannten manuellen Erstellung kann man das ganze auch über das Terminal lösen, einfach folgenden Befehl eingeben. 
 
 ```
-mkdir -p /home/ros/ros2_ws/src && cd /home/ros/ros2_ws && colcon build
+mkdir -p /home/user/ros2_ws/src && cd /home/user/ros2_ws && colcon build
 ```
 
 Als nächstes dann das Simulationstutorial starten.

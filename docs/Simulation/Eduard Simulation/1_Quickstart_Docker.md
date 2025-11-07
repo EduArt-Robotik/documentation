@@ -1,27 +1,28 @@
 ---
-id: quickstart
-title: Schnellstart
+id: quickstartDocker
+title: SchnellstartDocker
 sidebar_position: 1
 ---
 
-# Quickstart
+# Quickstart mit Docker
 
-Diese Anleitung ist dafür gedacht, schnell in die Eduard Simulation zu starten. Wenn du keine Lust auf die manuelle Einrichtung hast und direkt erste Erfahrungen mit der Simulation starten willst, ist diese Anleitung für dich geeignet. Wenn du lernen willst, wie man seine Linuxumgebung selbst einrichtet, überspringe dieses Kapitel und beginne mit "Manuelle Einrichtung". 
+Diese Anleitung ist dafür gedacht, schnell in die Eduard Simulation zu starten. Wenn du keine Lust auf die manuelle Einrichtung hast und direkt erste Erfahrungen mit der Simulation starten willst, ist diese Anleitung für dich geeignet. Wenn du lernen willst, wie man seine Linuxumgebung selbst einrichtet, überspringe dieses Kapitel und beginne mit "[Plattformunabhängige Installation mit Docker](2_Docker-Installation.md)". 
 
-Die folgenden Quickstart-Anleitungen sind Betriebssystemunabhängig, um die Einrichtung von Ubuntu auf dem eigenen Betriebssystem oder als Virtuelle Maschine zu vermeiden. Für Linuxnutzer empfielht es sich, die "normale" Installation zu verwenden (Weiter bei tbd).
+Die folgenden Quickstart-Anleitungen sind Betriebssystemunabhängig, um die Einrichtung von Ubuntu auf dem eigenen Betriebssystem oder als Virtuelle Maschine zu vermeiden. Für Linuxnutzer empfielht es sich, die "normale" Installation zu verwenden (Weiter bei [ROS Workspace anlegen](4_ROS-Workspace.md)).
 ## Voraussetzungen
 
-- Vorhandener Github Account mit hinterlegtem SSH Key für `git clone` [Anleitung](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- Vorhandener Github Account mit hinterlegtem SSH Key für `git clone` 
+- [SSH Key anlegen](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 ## Benötigte Software
 
-- Docker Hub [Downloadlink](https://docs.docker.com/desktop/setup/install/mac-install/), installiert, AGBs akzeptiert und mal geöffnet
+- [Docker Hub ](https://docs.docker.com/desktop/setup/install/mac-install/), installiert, AGBs akzeptiert und mal geöffnet
 
 optional
-- VNC Viewer installiert [Downloadlink](https://www.realvnc.com/de/connect/download/viewer/)
-- Visual Studio Code installiert [Downloadlink](https://code.visualstudio.com/download)
-
+- [VNC Viewer](https://www.realvnc.com/de/connect/download/viewer/) installiert
+- [Visual Studio Code](https://code.visualstudio.com/download) installiert 
 ## Installation
+
 - Erstelle einen Ordner "EduArt" in deinen Dokumenten
 - Öffne den Ordner EduArt im Dateimanager 
 
@@ -95,7 +96,6 @@ Skaliere das Fenster ggf., sodass du die Buttons unten siehst und drücke "Remot
 Optional: Fenster 4 öffnet das Monitoring in RVIZ.
 
 ![RViz](./assets/quickstart/7rviz.png)
-
 
 ## Troubleshooting
 

@@ -31,53 +31,48 @@ Kopiere folgenden Inhalt in die Dateien:
 ### Dockerfile
 
 ```dockerfile
-FROM osrf/ros:jazzy-desktop 
+FROM osrf/ros:jazzy-desktop
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# -------------------------------------------------------------------
+# Create custom user and configure the user settings
+# -------------------------------------------------------------------
+
+# Create User
+RUN useradd -m user -s /bin/bash && echo "user:user" | chpasswd && adduser user sudo
+USER root
+
+
+# -------------------------------------------------------------------
+# Install dependencies
+# -------------------------------------------------------------------
+
+
+RUN apt update &&  apt install -y \
+    tmux git openssh-client gdb build-essential software-properties-common swig
+
+RUN apt-get update && apt-get install -y \
+    python3-pip python3.12-venv python3-pip
+
 RUN apt update && apt install -y \
     xfce4 xfce4-terminal x11vnc xvfb novnc websockify supervisor dbus-x11 \
-    sudo net-tools curl wget && \
-    rm -rf /var/lib/apt/lists/*
+    sudo net-tools curl wget
+
+# Install GPIO MRAA lib for edu_robot_control_template
+# Build and install MRAA from source
+RUN git clone https://github.com/eclipse/mraa.git /opt/mraa \
+    && cd /opt/mraa && mkdir build && cd build \
+    && cmake .. -DBUILDSWIGPYTHON=ON \
+    && make -j$(nproc) && make install \
+    && ldconfig \
+    && rm -rf /opt/mraa
 
 
-# User anlegen
-RUN useradd -m ros && echo "ros:ros" | chpasswd && adduser ros sudo
-USER ros
-WORKDIR /home/ros
-ENV HOME=/home/ros
-ENV USER=ros
-
-USER root
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-EXPOSE 8080
-CMD ["/usr/bin/supervisord"]
-
-RUN apt update \
-    &&  apt install -y \
-    tmux \
-    git \
-    openssh-client \
-    gdb \
-    build-essential
-
-RUN apt-get update \
-    && apt-get install -y \
-        python3-pip \
-        python3.12-venv
-
-RUN bash -c "\
-    mkdir /home/ros/python_env \
-    && cd /home/ros/python_env \
-    && python3 -m venv .flet \
-    && source .flet/bin/activate \
-    && pip3 install flet setuptools pyyaml \
-    && pip install 'flet[all]==0.25.1' --upgrade"
-
-# Install EduRobot dependencies
+# Install edu_robot dependencies
 RUN apt update \
     && apt install -y \
+    ros-jazzy-rmw-cyclonedds-cpp \
     ros-jazzy-hardware-interface \
     ros-jazzy-diagnostic-updater \
     ros-jazzy-hardware-interface \
@@ -88,6 +83,61 @@ RUN apt update \
     ros-jazzy-ros-gz \
     ros-jazzy-xacro \
     ros-jazzy-rviz2
+
+# Create virtual environment with python modules for edu_virtual_joy
+RUN bash -c "\
+    mkdir /home/user/python_env -p \
+    && cd /home/user/python_env \
+    && python3 -m venv .flet \
+    && source .flet/bin/activate \
+    && pip3 install flet setuptools pyyaml \
+    && pip install 'flet[all]==0.25.1' --upgrade"
+# -------------------------------------------------------------------
+# Install packages for simulation
+# -------------------------------------------------------------------
+
+# Create Ros2 workspace
+# … 
+
+# Get edu_robot package
+# …
+
+# Set Python environment
+ENV PYTHONPATH='/home/ros/python_env/.flet/lib/python3.12/site-packages'
+
+# Enable color on command prompt
+ENV TERM=xterm-256color
+ENV color_prompt=yes
+
+
+# VNC setup
+RUN mkdir -p /home/user/supervisor/logs /home/user/supervisor/run && \
+    chown -R user:user /home/user/supervisor
+COPY --chown=user:user supervisord.conf /home/user/supervisor/supervisord.conf
+
+# -------------------------------------------------------------------
+# Configure the user space
+# -------------------------------------------------------------------
+
+USER user
+WORKDIR /home/user
+ENV HOME=/home/user
+ENV USER=user
+
+
+# -------------------------------------------------------------------
+# Environment variables
+# -------------------------------------------------------------------
+
+# Set Python environment
+ENV PYTHONPATH='/home/user/python_env/.flet/lib/python3.12/site-packages'
+
+# Enable color on command prompt
+ENV TERM=xterm-256color
+ENV color_prompt=yes
+
+# Start supervisord
+CMD ["/usr/bin/supervisord"]
 ```
 
 `FROM osrf/ros:jazzy-desktop` 
@@ -184,20 +234,26 @@ Mit den Pfeiltasten nach oben kann man sich durch bisherige Linux Kommandozeilen
 
 
 ```yml
-version: "3.9"
-
 services:
-  ros2-vnc:
-    image: ros2-vnc
+  ros2-simulation:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     container_name: ros2-vnc-test
+    user: user
+    environment:
+      - ROS_DOMAIN_ID=0
+      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
     ports:
       - "8080:8080"
       - "5900:5900"
+    #  - "7400-7743:7400-7743"
+    #network_mode: host
     shm_size: "2g"
-    tty: true        # entspricht -t
-    stdin_open: true # entspricht -i
+    tty: true
+    stdin_open: true
     restart: unless-stopped
-
+    command: bash -c '/usr/bin/supervisord -c /home/user/supervisor/supervisord.conf'
 ```
 
 Die macht nichts anderes, als den letztem Befehl von oben zu kürzen auf 
