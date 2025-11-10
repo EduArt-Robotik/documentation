@@ -42,7 +42,7 @@
           Eduard loves cookies – help him eat them
         </h2>
         <p class="cookie-banner-text">
-          We use Matomo (without tracking cookies) to understand how people use our website.
+          We use Matomo to understand how people use our website.
           This anonymous information helps Eduard improve the site and keep his robots running
           smoothly. You can allow this tracking or continue without it – it’s completely up to you.
         </p>
