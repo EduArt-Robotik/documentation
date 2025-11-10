@@ -46,6 +46,13 @@ const config = {
     locales: ['de', 'en'],
   },
 
+  scripts: [
+    {
+      src: '/js/matomo-cookiebanner.js',
+      async: true, // optional
+    },
+  ],
+
   presets: [
     [
       'classic',
@@ -82,6 +89,7 @@ const config = {
       }),
     ],
   ],
+
 
   stylesheets: [
     {
