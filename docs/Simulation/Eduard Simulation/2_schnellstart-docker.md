@@ -25,7 +25,7 @@ optional
 - [Visual Studio Code](https://code.visualstudio.com/download) installiert 
 ## Installation
 
-- Erstelle einen Ordner "EduArt" in deinen Dokumenten
+- Erstelle einen Ordner "EduArt" in deinen Dokumenten. Nenne ihn wirklich "EduArt", sonst funktionieren die folgenden Befehle nicht. 
 - Öffne den Ordner EduArt im Dateimanager 
 
 Auf Mac:

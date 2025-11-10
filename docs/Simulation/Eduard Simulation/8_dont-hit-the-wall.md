@@ -136,7 +136,7 @@ ToDo:
 - Beispiele für Manuelles Steuern vom Roboter in verschiedene Richtungen vor Dont hit the wall machen, Hannes' Liste
 
 - Richtungen vom Roboter, x, y und Z Darstellen, rechte Hand regel erklären
-- Terminal navigation mit Pfeiltasten ist ätzend
+- Terminal navigation mit Pfeiltasten ist ätzend, ggf. stattdessen im Terminal 
 
 subsribe to Range sensors, publish to driving
 
