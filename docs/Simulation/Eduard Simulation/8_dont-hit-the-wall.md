@@ -121,10 +121,23 @@ if __name__ == '__main__':
 
 - Dann in http://localhost:8080/vnc.html ein Terminal öffnen oder `start-simulation.sh` eingeben und Simulation starten (ich nehm Option 2)
 - Links unten im Terminal den Virtual Joystick beenden (ctrl + c)
-- Stattdessen im WOrkspace … 
+- Stattdessen im Workspace folgenden Befehl eingeben 
 
-Joa, colcon build würde ich sagen, und dann? Wie führt mans aus? HANNEEEES.
+```bash
+ros2 run edu_robot_control_template dont_hit_the_wall_node.py --ros-args -r __ns:=/eduard/blue
+```
+
+- Nicht vergessen, in der Simulation auf "Start" zu klicken – dann fährt der Eduard Roboter gerade aus bis kurz vor die Wand.
 
 
+--- 
+
+ToDo:
+- Beispiele für Manuelles Steuern vom Roboter in verschiedene Richtungen vor Dont hit the wall machen, Hannes' Liste
+
+- Richtungen vom Roboter, x, y und Z Darstellen, rechte Hand regel erklären
+- Terminal navigation mit Pfeiltasten ist ätzend
+
+subsribe to Range sensors, publish to driving
 
 # Troubleshooting 
