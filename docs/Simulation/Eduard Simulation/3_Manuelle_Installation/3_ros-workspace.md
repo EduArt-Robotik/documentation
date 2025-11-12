@@ -1,7 +1,7 @@
 ---
 id: ros-workspace
 title: ROS2 Workspace anlegen
-sidebar_position: 5
+sidebar_position: 3
 ---
 # ROS2 Workspace anlegen
 

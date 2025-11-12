@@ -1,7 +1,7 @@
 ---
 id: simulation-starten
 title: Simulation starten
-sidebar_position: 6
+sidebar_position: 4
 ---
 # Simulation Starten
 

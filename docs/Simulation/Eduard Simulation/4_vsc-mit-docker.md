@@ -1,7 +1,7 @@
 ---
 id: vsc-mit-docker
 title: VSC auf Hostcomputer mit Dockercontainer verbinden
-sidebar_position: 7
+sidebar_position: 4
 ---
 # VSC auf Hostcomputer mit Dockercontainer verbinden
 

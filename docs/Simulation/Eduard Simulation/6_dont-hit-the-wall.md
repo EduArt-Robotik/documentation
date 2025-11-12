@@ -1,7 +1,7 @@
 ---
 id: dont-hit-the-wall
 title: Don't hit the Wall Beispiele
-sidebar_position: 8
+sidebar_position: 6
 ---
 # Don't hit the Wall Beispiele
 
