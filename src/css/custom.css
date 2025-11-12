@@ -132,6 +132,8 @@
   border-radius: 999px;
   background: transparent;
   box-shadow: none;
+  margin: 0rem auto;
+
 }
 
 /* Primary: Allow cookies – grün und prominent */
@@ -217,8 +219,38 @@
     font-size: 18px;
   }
 
+  .cookie-banner-text {
+    font-size: 14px;
+  }
+
   .cookie-banner-buttons {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+
+/* === Touch Controls für Cookie-Game === */
+#cookie-touch-controls {
+  display: flex;
+  flex-direction: row;       /* 👉 nebeneinander */
+  justify-content: center;   /* zentriert innerhalb des Banners */
+  align-items: center;
+  gap: 0.5rem;               /* Abstand zwischen Buttons */
+  margin-top: 0.75rem;
+  user-select: none;
+}
+
+.touch-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.6rem;
+  background: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  touch-action: none;
+  margin: 0;
 }

@@ -16,7 +16,7 @@
           <!-- Roboter -->
           <g id="cookie-robot" transform="translate(40,60)">
             <image
-              href="/img/Eduard-Red-Top.svg"
+              href="img/Eduard-Red-Top.svg"
               width="40"
               height="40"
               x="-20"
@@ -26,16 +26,23 @@
 
           <!-- Cookies -->
           <g class="cookie" transform="translate(160,40)">
-            <image href="/img/Cookie.svg" width="20" height="20" x="-10" y="-10" />
+            <image href="img/Cookie.svg" width="20" height="20" x="-10" y="-10" />
           </g>
           <g class="cookie" transform="translate(200,70)">
-            <image href="/img/Cookie.svg" width="20" height="20" x="-10" y="-10" />
+            <image href="img/Cookie.svg" width="20" height="20" x="-10" y="-10" />
           </g>
           <g class="cookie" transform="translate(180,100)">
-            <image href="/img/Cookie.svg" width="20" height="20" x="-10" y="-10" />
+            <image href="img/Cookie.svg" width="20" height="20" x="-10" y="-10" />
           </g>
         </svg>
       </div>
+
+      <div class="cookie-touch-controls">
+      <button class="touch-btn" data-dir="up">⬆️</button>
+    <button class="touch-btn" data-dir="left">⬅️</button>
+    <button class="touch-btn" data-dir="down">⬇️</button>
+    <button class="touch-btn" data-dir="right">➡️</button>
+  </div>
 
       <div class="cookie-banner-content">
         <h2 class="cookie-banner-headline">
@@ -72,74 +79,123 @@
 
     document.body.appendChild(banner);
     document.body.appendChild(toggle);
+    
+
 
     // === Cookie-Game-Animation ===
     (function initCookieGame() {
-      const robot  = banner.querySelector('#cookie-robot');
-      const cookies = Array.from(banner.querySelectorAll('.cookie'));
-      if (!robot || !cookies.length) return;
+  const robot  = banner.querySelector('#cookie-robot');
+  const cookies = Array.from(banner.querySelectorAll('.cookie'));
+  if (!robot || !cookies.length) return;
 
-      const robotPos = { x: 40, y: 60 };
-      let robotAngle = 0;
-      const step = 5;
+  const controls = banner.querySelector('.cookie-touch-controls');
 
-      function updateRobotTransform() {
-        robotPos.x = Math.max(20, Math.min(240, robotPos.x));
-        robotPos.y = Math.max(20, Math.min(120, robotPos.y));
-        robot.setAttribute('transform', `translate(${robotPos.x}, ${robotPos.y}) rotate(${robotAngle})`);
+  const robotPos = { x: 40, y: 60 };
+  let robotAngle = 0;
+  const step = 5;
+
+  function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+
+  function updateRobotTransform() {
+    robotPos.x = clamp(robotPos.x, 20, 240);
+    robotPos.y = clamp(robotPos.y, 20, 120);
+    robot.setAttribute('transform', `translate(${robotPos.x}, ${robotPos.y}) rotate(${robotAngle})`);
+  }
+
+  function isColliding(a, b) {
+    const r = a.getBoundingClientRect();
+    const c = b.getBoundingClientRect();
+    if ((r.width === 0 && r.height === 0) || (c.width === 0 && c.height === 0)) return false;
+    return !(r.right < c.left || r.left > c.right || r.bottom < c.top || r.top > c.bottom);
+  }
+
+  function checkCollisions() {
+    cookies.forEach(cookie => {
+      if (cookie.classList.contains('eaten')) return;
+      if (isColliding(robot, cookie)) {
+        cookie.classList.add('eaten');
+        setTimeout(() => cookie.remove(), 200);
       }
+    });
+  }
 
-      function isColliding(a, b) {
-        const r = a.getBoundingClientRect();
-        const c = b.getBoundingClientRect();
-        if ((r.width === 0 && r.height === 0) || (c.width === 0 && c.height === 0)) return false;
-        return !(r.right < c.left || r.left > c.right || r.bottom < c.top || r.top > c.bottom);
-      }
+  // ✅ Eine zentrale Bewegungsfunktion – Keyboard & Buttons nutzen dieselbe Logik
+  function move(dir) {
+    switch (dir) {
+      case 'up':    robotAngle = 0;   robotPos.y -= step; break;
+      case 'right': robotAngle = 90;  robotPos.x += step; break;
+      case 'down':  robotAngle = 180; robotPos.y += step; break;
+      case 'left':  robotAngle = -90; robotPos.x -= step; break;
+      default: return;
+    }
+    updateRobotTransform();
+    checkCollisions();
+  }
 
-      function checkCollisions() {
-        cookies.forEach(cookie => {
-          if (cookie.classList.contains('eaten')) return;
-          if (isColliding(robot, cookie)) {
-            cookie.classList.add('eaten');
-            setTimeout(() => cookie.remove(), 200);
-          }
-        });
-      }
+  // Tastatur -> auf move mappen
+  function handleKey(e) {
+    const map = {
+      ArrowUp: 'up', ArrowRight: 'right',
+      ArrowDown: 'down', ArrowLeft: 'left'
+    };
+    const dir = map[e.key];
+    if (!dir) return;
+    e.preventDefault();
+    move(dir);
+  }
 
-      function handleKey(e) {
-        let used = false;
-        switch (e.key) {
-          case 'ArrowUp':
-            robotAngle = 0;
-            robotPos.y -= step;
-            used = true;
-            break;
-          case 'ArrowRight':
-            robotAngle = 90;
-            robotPos.x += step;
-            used = true;
-            break;
-          case 'ArrowDown':
-            robotAngle = 180;
-            robotPos.y += step;
-            used = true;
-            break;
-          case 'ArrowLeft':
-            robotAngle = -90;
-            robotPos.x -= step;
-            used = true;
-            break;
-        }
-        if (used) {
-          e.preventDefault();
-          updateRobotTransform();
-          checkCollisions();
-        }
-      }
+  window.addEventListener('keydown', handleKey);
 
-      window.addEventListener('keydown', handleKey);
-      updateRobotTransform();
-    })();
+  // Buttons (Touch & Klick) -> ebenfalls move nutzen
+  if (controls) {
+    const start = (dir) => move(dir);
+
+    // Klick (Desktop/Emulator)
+    controls.addEventListener('click', (e) => {
+      const btn = e.target.closest('.touch-btn');
+      if (!btn) return;
+      start(btn.dataset.dir);
+    });
+
+    // Touch (Handy) – preventDefault, damit nichts scrollt
+    controls.addEventListener('touchstart', (e) => {
+      const btn = e.target.closest('.touch-btn');
+      if (!btn) return;
+      e.preventDefault();
+      start(btn.dataset.dir);
+    }, { passive: false });
+
+    // Vorausgesetzt: function start(dir) { move(dir); } existiert
+let holdTimer = null;
+let holdDir = null;
+
+const onPress = (e) => {
+  const btn = e.target.closest('.touch-btn');
+  if (!btn) return;
+  e.preventDefault();                 // verhindert Scrollen auf Touch
+  holdDir = btn.dataset.dir;
+  start(holdDir);                     // einmal sofort bewegen
+  holdTimer = setInterval(() => start(holdDir), 80); // dann wiederholen
+};
+
+const onRelease = () => {
+  if (holdTimer) { clearInterval(holdTimer); holdTimer = null; }
+  holdDir = null;
+};
+
+controls.addEventListener('pointerdown', onPress, { passive: false });
+controls.addEventListener('pointerup', onRelease);
+controls.addEventListener('pointerleave', onRelease);
+controls.addEventListener('pointercancel', onRelease);
+
+// Sicherheit: falls man den Finger außerhalb loslässt
+window.addEventListener('pointerup', onRelease);
+
+  }
+
+  updateRobotTransform();
+})();
+
 
     // === 2. Funktionen ===
     function setToggleColor(status) {
@@ -211,3 +267,4 @@
     }
   });
 })();
+
