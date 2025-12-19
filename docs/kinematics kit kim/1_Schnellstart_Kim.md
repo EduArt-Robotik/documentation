@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Quick Start
+# Schnellstart
 
 ## Zielgruppe dieses Dokuments
 Dieses Dokument ist für alle Personen bestimmt, die eine Kinematics Kit Kim oder Komponenten davon gekauft haben. 
