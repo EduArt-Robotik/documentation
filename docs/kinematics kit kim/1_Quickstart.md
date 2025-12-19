@@ -34,7 +34,7 @@ Tipp: Achte während der Arbeit auf eine saubere Kabelführung. Schneide die Kab
 
 ## SD-Karte
 
-Lade das Image hier herunter oder verwende eine eigene Installation (siehe dazu: [https://github.com/eduart-robotik/edu_drive_ros2](https://github.com/eduart-robotik/edu_drive_ros2)).
+Lade das Image [hier](https://eduart-robotik.com/downloads/#kim-v-rpi5-1-0-0) herunter oder verwende eine eigene Installation (siehe dazu: [https://github.com/eduart-robotik/edu_drive_ros2](https://github.com/eduart-robotik/edu_drive_ros2)).
 
 Entpacke das heruntergeladene Image entweder über das Terminal oder per Rechtsklick → **Entpacken**:
 
