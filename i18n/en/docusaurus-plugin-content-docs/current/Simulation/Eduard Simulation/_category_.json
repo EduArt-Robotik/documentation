@@ -1,8 +1,7 @@
 {
   "label": "Eduard Simulation",
-  "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Start the simulation of Eduard and explore its features in a virtual environment."
+    "description": "Quick start of the Eduard Simulation with Docker container on all operating systems. If this does not work or if there is interest in learning in detail how to start the simulation, continue in the chapter 'Manual Installation'."
   }
 }

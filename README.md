@@ -67,3 +67,17 @@ Content:
 - same folder structure as in /docs
 - translate document with github copilot
 - make sure that the id is the same as in the original doc in /docs
+
+# English versions
+
+Use the following commands to check if the translation works
+
+```
+npm run build
+```
+
+```
+npm run serve
+```
+
+and then switch to EN

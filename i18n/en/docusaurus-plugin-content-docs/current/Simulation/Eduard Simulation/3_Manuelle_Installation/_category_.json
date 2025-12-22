@@ -1,0 +1,7 @@
+{
+  "label": "Manuelle Installation mit Docker",
+  "link": {
+    "type": "generated-index",
+    "description": "Alternative to the quick start with Docker container: Detailed instructions for manual installation and starting the Eduard Simulation on various operating systems."
+  }
+}
