@@ -7,8 +7,9 @@ Rendered Docu here: https://docs.eduart-robotik.com
 
 
 # ToDo
-- EduArt Logo vanishes sometimes? find out why and how to fix that
-- structure of tutorials 
+- [ ] EduArt Logo vanishes sometimes? find out why and how to fix that
+- [ ] structure of tutorials 
+- [ ] add english translations
 
 # Installation 
 ```
@@ -83,3 +84,6 @@ npm run serve
 ```
 
 and then switch to EN
+
+# Help us
+If you want to help us update the Docu or write a chapter, please Fork the Repo and create a Pull Request, we will check it and merge it if everything is fine. You can also contact us directly if you have any questions or suggestions.
