@@ -1,3 +1,5 @@
+Rendered Docu here: https://docs.eduart-robotik.com
+
 # Usage
 - docs/EduArts-Tutorials is main page of this, for better adjustment open /docs Folder in Obsidian App 
 - static includes pictures etc., write path always without static (e.g. logos/EduArtLogo.svg)
