@@ -4,12 +4,15 @@ Rendered Docu here: https://docs.eduart-robotik.com
 - docs/EduArts-Tutorials is main page of this, for better adjustment open /docs Folder in Obsidian App 
 - static includes pictures etc., write path always without static (e.g. logos/EduArtLogo.svg)
 - src/theme/index.js overrides standard menu from docusaurus with EduArt Menu
+- the main branch of this repo automatically deploys to https://docs.eduart-robotik.com every day at 4 am
+- for local development use `npm run start` and open http://localhost:3000 in your browser 
+- please work on your own branch 
 
 
 # ToDo
 - [ ] EduArt Logo vanishes sometimes? find out why and how to fix that
 - [ ] structure of tutorials 
-- [ ] add english translations
+- [ ] add english translations / check existing translations
 
 # Installation 
 ```
@@ -96,4 +99,17 @@ Example: [Name of chapter](Link_to_chapter.md)
 Example: [Name of website](https://www.example.com)
 
 ## Add picture
-Example: 
+Add an ordner called "assets" in the same folder as the doc, then add the picture in this folder and reference it with the path "assets/picture.png". Name the picture with a descriptive name, so you can easily find it later. Use subfolders if you have many pictures, e.g. "assets/quickstart/picture.png".
+
+Example: ![RViz](./assets/quickstart/7rviz.png)
+
+## Add code snippet
+```shell
+cd edu_simulation_quickstart
+```
+
+```python
+# This is a code snippet
+def hello_world():
+    print("Hello, World!")
+```
