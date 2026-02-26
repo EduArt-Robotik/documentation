@@ -4,7 +4,7 @@ Rendered Docu here: https://docs.eduart-robotik.com
 - docs/EduArts-Tutorials is main page of this, for better adjustment open /docs Folder in Obsidian App 
 - static includes pictures etc., write path always without static (e.g. logos/EduArtLogo.svg)
 - src/theme/index.js overrides standard menu from docusaurus with EduArt Menu
-- the main branch of this repo automatically deploys to https://docs.eduart-robotik.com every day at 4 am
+- the `master` branch of this repo automatically deploys to https://docs.eduart-robotik.com every day at 4 am
 - for local development use `npm run start` and open http://localhost:3000 in your browser 
 - please work on your own branch 
 
