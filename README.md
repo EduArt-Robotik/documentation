@@ -87,3 +87,13 @@ and then switch to EN
 
 # Help us
 If you want to help us update the Docu or write a chapter, please Fork the Repo and create a Pull Request, we will check it and merge it if everything is fine. You can also contact us directly if you have any questions or suggestions.
+
+# Formating
+## Add reference to another chapter
+Example: [Name of chapter](Link_to_chapter.md)
+
+## Add reference to website
+Example: [Name of website](https://www.example.com)
+
+## Add picture
+Example: 

@@ -36,31 +36,31 @@ Auf Windows:
 
 im Terminal:
 - mit `cd` in den Ordner rein navigieren, z.B. 
-```
+```shell
 cd Documents/EduArt
 ```
 - enter drücken
 
 Terminal öffnen und folgenden Befehl eingeben:
-```
+```shell
 git clone git@github.com:EduArt-Robotik/edu_simulation_quickstart.git
 ```
 - wenn hier was von "authentication failed" steht, ist der Github SSH Key nicht richtig angelegt
 
 Wenn das Repo dann fertig geklont ist
-```
+```shell
 cd edu_simulation_quickstart
 ```
 
 Dockercontainer bauen (dauert je nach Computer und Arbeitsspeicher zwischen 3 und 20 min). 
-```
+```shell
 docker build --platform=linux/amd64 -t ros2-vnc .
 ```
 - Bei Änderungen im Dockerfile oder in der Supervisord.config muss immer neu gebaut werden. Änderungen können Beispielsweise das Hintergrundbild im Container oder die Bildschirmauflösung sein.
 ![Build](./assets/quickstart/1terminal.png)
 
 Wenn der Container erfolgreich gebaut ist, den Dockercontainer starten:
-```
+```shell
 docker compose -f docker-compose.yml up
 ```
 
@@ -82,7 +82,7 @@ Optional in VNC Viewer integrieren
 Terminal in Simulation öffnen.
 Folgenden Befehl eingeben, dann öffnet sich automatisch ein 4-geteiltes Terminalfenster mit 4 Kommandos.
 
-```
+```shell
 start-simulation.sh
 ```
 
@@ -110,12 +110,12 @@ Optional: Fenster 4 öffnet das Monitoring in RVIZ.
 
 Fehler: ` ✘ ros2-vnc Error pull access denied for ros2-vnc, repository does not exist or may require 'docker login'` oder:  `if container already exists`: 
 
-```
+```shell
 docker compose -f docker-compose.run.yml down
 ```
 
 und danach dann 
-```
+```shell
 docker compose -f docker-compose.run.yml up
 ```
 
@@ -129,7 +129,7 @@ Bildschirmauflösung passt nicht (Containerinhalt zu klein, zu groß oder abgesc
 Bildschirmgröße des Containers ändern 
 - In Datei `supervisord.conf` im geklonten Repo in folgender Zeile
 
-```
+```shell
 command=/usr/bin/Xvfb :0 -screen 0 1920x900x24
 ```
 
