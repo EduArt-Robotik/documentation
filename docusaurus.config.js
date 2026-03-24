@@ -120,7 +120,7 @@ const config = {
         title: 'Start',
         logo: {
           alt: 'EduArt Logo',
-          src: 'static/logos/EduArt_Logo_black.svg',
+          src: 'static/logos/EduArt_Logo_black.png',
           href: '/',
            target: '_self',
 

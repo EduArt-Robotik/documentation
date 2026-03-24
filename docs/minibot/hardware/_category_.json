@@ -1,7 +1,7 @@
 {
-  "label": "Bedienungsanleitung",
+  "label": "hardware",
   "link": {
     "type": "generated-index",
-    "description": "Bedienungsanleitung für „Eduard Performance v3“: Installation, Inbetriebnahme und Nutzung."
+    "description": "Hardware assembly instructions for the EduArt MiniBot. Follow the step-by-step guide to build your own MiniBot and get it ready for software setup."
   }
 }

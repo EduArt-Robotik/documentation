@@ -15,7 +15,6 @@ You could later combine these into one launchfile if you want to. We decided aga
 Then enable the robot using:
 ```bash
 ros2 service call /edu_sml/enable std_srvs/srv/SetBool "data: true"
-
 ```
 
 And set a goal pose for the robot:
