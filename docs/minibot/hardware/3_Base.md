@@ -70,7 +70,7 @@ Attach the Battery Holders with 2x M3x8 to the bottom plate.
 
 Attach 4 100mm MakerBeams with M3x6 countersunk head screws to the corners of the base.
 
-![Fourth Step 3](./assets/B14.png)
+![Fourth Step 3](./assets/B14-new.png)
 
 Place the Raspberry Pi Camera inside Raspberry Pi Camera Mount.
 
