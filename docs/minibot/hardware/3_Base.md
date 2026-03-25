@@ -64,7 +64,7 @@ Attach the other EduArt Boards on top of the EduArt Adapter Board in the followi
 
 ![Fourth Step 1](./assets/B12.png)
 
-Attach the Battery Holders with 2 M3x8 to the bottom plate.
+Attach the Battery Holders with 2x M3x8 to the bottom plate.
 
 ![Fourth Step 2](./assets/B13.png)
 
