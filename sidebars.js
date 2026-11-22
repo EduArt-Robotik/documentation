@@ -14,12 +14,14 @@
 
  @type {import('@docusaurus/plugin-content-docs').SidebarsConfig}
  */
+const edukartCategory = require('./docs/edukart/_category_.json');
+
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   tutorialSidebar: [
     {
       type: 'category',
-      label: 'EduArt Robotik Tutorials',
+      label: 'Overview',
       link: {
         type: 'doc',
         id: 'EduArts-Tutorials',
@@ -107,6 +109,15 @@ const sidebars = {
               },
             ],
           },
+        {
+          type: 'category',
+          ...edukartCategory,
+          items: [
+            'edukart/edukart-spielanleitung',
+            'edukart/edukart-baue-deinen-roboter',
+            'edukart/edukart-eigenen-roboter-verwenden',
+          ],
+        },
       ],
     },
   ],

@@ -1,6 +1,7 @@
 // src/theme/Navbar/index.js
 import React, {useState} from 'react';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import '@site/src/css/header.css';
 
 // Docusaurus eigene Navbar-Komponenten:
@@ -163,6 +164,7 @@ const menuData = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const logoUrl = useBaseUrl('/logos/EduArt_Logo_white.svg');
 
   return (
     <>
@@ -185,9 +187,9 @@ export default function Navbar() {
           <div className="menu__logo">
             <SmartLink to="/" aria-label="EduArt Robotik GmbH Home">
               <picture>
-                <source srcSet="logos/EduArt_Logo_white.svg" type="image/svg+xml" />
+                <source srcSet={logoUrl} type="image/svg+xml" />
                 <img
-                  src="logos/EduArt_Logo_white.svg"
+                  src={logoUrl}
                   alt="EduArt Robotik GmbH Logo"
                   width="180" height="40"
                   loading="eager" decoding="async"
